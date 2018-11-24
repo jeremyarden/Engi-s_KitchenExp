@@ -120,7 +120,7 @@ void TulisMATRIKS (MATRIKS M)
     {
         for (j = 1; j <= NKolEff(M); j++)
         {
-            if((Elmt(M, i, j) - 'a' >= 0) && (Elmt(M, i, j) - 'a' <= 3)){
+            if(((Elmt(M, i, j) >= 'a') && (Elmt(M, i, j) <= 'j')) || ((Elmt(M, i, j) >= 'A') && (Elmt(M, i, j) <= 'R'))){
                 printf("# ");
             }
             else{
