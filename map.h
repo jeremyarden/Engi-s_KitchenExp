@@ -21,5 +21,7 @@ void START(FILE *fp);
 void ADV();
 void FileToMap(FILE *fp, MATRIKS *room);
 void InitMap(MATRIKS *room1, MATRIKS *room2, MATRIKS *room3, MATRIKS *kitchen);
+void moveplayer(player *p, MATRIKS room, char cmd);
+void NearestCust(player p, MATRIKS room, int *ordable);
 
 #endif
