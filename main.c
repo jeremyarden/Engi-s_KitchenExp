@@ -1,22 +1,23 @@
 #include <stdio.h>
 #include "map.h"
+#include "graph.h"
 
 int main()
 {
     FILE *mantul;
+    Graph GMap;
     player sergio;
     char cmd;
     int ordable;
-    MATRIKS room, rcopy;
+    adrNode currLoc;
+    MATRIKS room1, room2, room3, kitchen;
 
     //Buka file, masukin ke mantul
-    mantul = fopen("map.txt", "r");
-    FileToMap(mantul, &room);
-    CopyMATRIKS(room, &rcopy);
-    //rcopy itu matriks buat ditampilin ke layar. Soalnya kalo nampilin ke layar pake matriks aslinya,
-    //nanti ketimpa timpa gajelas gitu
+    InitMap(&room1, &room2, &room3, &kitchen);
+    InitGraph(&GMap);
+    currLoc = First(GMap);
 
-    //coba inisialisasi player di ruangan 1, tulis map di keadaan itu
+    /*//coba inisialisasi player di ruangan 1, tulis map di keadaan itu
     sergio.px=5;
     sergio.py=5;
     Elmt(rcopy, sergio.px, sergio.py) = 'P';
@@ -39,7 +40,7 @@ int main()
             printf("Table %d\n", ordable);
         }
         scanf("%c", &cmd);
-    }
+    }*/
 
 
 
