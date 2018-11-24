@@ -12,8 +12,10 @@ typedef struct{
     int room;//ngasihtau player ada di ruangan mana
 }player;
 
-void FileToMap(FILE *fp);
+void FileToMap(FILE *fp, MATRIKS *room);
 
-void movement(player *p, MATRIKS *room);
+void moveplayer(player *p, MATRIKS room, char cmd);
+
+void NearestCust(player p, MATRIKS room, int *ordable);
 
 #endif

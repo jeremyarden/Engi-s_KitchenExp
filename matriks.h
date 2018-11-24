@@ -33,6 +33,7 @@ void MakeMATRIKS (int NB, int NK, MATRIKS * M);
 #define NBrsEff(M) (M).NBrsEff
 #define NKolEff(M) (M).NKolEff
 #define Elmt(M,i,j) (M).Mem[(i)][(j)]
+#define Elmtp(M,i,j) (M)->Mem[(i)][(j)]
 
 /* *** Selektor "DUNIA MATRIKS" *** */
 boolean IsIdxValid (int i, int j);

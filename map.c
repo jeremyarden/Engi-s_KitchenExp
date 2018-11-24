@@ -5,7 +5,7 @@
 
 char CC;
 
-void FileToMap(FILE *fp)
+void FileToMap(FILE *fp, MATRIKS *room)
 {
     MATRIKS room1, room2, room3, kitchen;
     indeks i, j;
@@ -28,25 +28,54 @@ void FileToMap(FILE *fp)
         //printf("\n");
     }
 
-    TulisMATRIKS(room1);
+    *room = room1;
 }
 
-void movement(player *p, MATRIKS room, char cmd){
+void moveplayer(player *p, MATRIKS room, char cmd){
     if(cmd == 'w'){
-        if(( Elmt(room, player.px, player.py-1) != '#' ) || (player.py-1 < 0)){ //kondisi dia gabisa gerak
-            printf("gabisa gerak kesitu");
+        if(( Elmt(room, (p->py)-1, p->px) == 'X' ) || ((Elmt(room, (p->py)-1, p->px) - '1' >= 0) && (Elmt(room, (p->py)-1, p->px) - '1' <= 3)) || (p->py-1 < 0)){ //kondisi dia gabisa gerak
+            printf("gabisa gerak kesitu\n");
+        }
+        else{
+            p->py--;
+        }
+
+    }
+
+    if(cmd == 'a'){
+        if(( Elmt(room, p->py, p->px-1) == 'X' ) || ((Elmt(room, p->py, p->px-1) - '1' >= 0) && (Elmt(room, p->py, p->px-1) - '1' <= 3)) || (p->px-1 < 0)){ //kondisi dia gabisa gerak
+            printf("gabisa gerak kesitu\n");
+        }
+        else{
+            p->px--;
+        }
+    }
+    
+    if(cmd == 'd'){
+        if(( Elmt(room, p->py, p->px+1) == 'X' ) || ((Elmt(room, p->py, p->px+1) - '1' >= 0) && (Elmt(room, p->py, p->px+1) - '1' <= 3)) || (p->px+1 > NKolEff(room))){ //kondisi dia gabisa gerak
+            printf("gabisa gerak kesitu\n");
+        }
+        else{
+            p->px++;
         }
     }
 
-    if(cmd == 'w'){
-
+    if(cmd == 's'){
+        if(( Elmt(room, p->py+1, p->px) == 'X' ) || ((Elmt(room, p->py+1, p->px) - '1' >= 0) && (Elmt(room, p->py+1, p->px) - '1' <= 3)) || (p->py+1 > NBrsEff(room))){ //kondisi dia gabisa gerak
+            printf("gabisa gerak kesitu\n");
+        }
+        else{
+            p->py++;
+        }
     }
+}
+
+void NearestCust(player p, MATRIKS room, int *ordable){
+    char up, down, right, left;
     
-    if(cmd == 'w'){
+    *ordable = Elmt(room, p.py, p.px) - '`';
 
-    }
-
-    if(cmd == 'w'){
-
+    if((*ordable > 4) || (*ordable < 1)){
+        *ordable = -999;
     }
 }
