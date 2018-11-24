@@ -71,3 +71,52 @@ void InitMap(MATRIKS *room1, MATRIKS *room2, MATRIKS *room3, MATRIKS *kitchen)
     fp = fopen("kitchen.txt", "r");
     FileToMap(fp, kitchen);
 }
+
+void moveplayer(player *p, MATRIKS room, char cmd){
+    if(cmd == 'w'){
+        if( (Elmt(room, (p->py)-1, p->px) == 'X' ) || (Elmt(room, (p->py)-1, p->px) == 'Y' ) || (Elmt(room, (p->py)-1, p->px) == 'Z' ) || ((Elmt(room, (p->py)-1, p->px) - '1' >= 0) && (Elmt(room, (p->py)-1, p->px) - '1' <= 8)) || (p->py-1 < 0)){ //kondisi dia gabisa gerak
+            printf("gabisa gerak kesitu\n");
+        }
+        else{
+            p->py--;
+        }
+
+    }
+
+    if(cmd == 'a'){
+        if(( Elmt(room, p->py, p->px-1) == 'X' ) || ( Elmt(room, p->py, p->px-1) == 'Y' ) || ( Elmt(room, p->py, p->px-1) == 'Z' ) || ((Elmt(room, p->py, p->px-1) - '1' >= 0) && (Elmt(room, p->py, p->px-1) - '1' <= 8)) || (p->px-1 < 0)){ //kondisi dia gabisa gerak
+            printf("gabisa gerak kesitu\n");
+        }
+        else{
+            p->px--;
+        }
+    }
+    
+    if(cmd == 'd'){
+        if(( Elmt(room, p->py, p->px+1) == 'X' ) || (Elmt(room, p->py, p->px+1) == 'Y' ) || (Elmt(room, p->py, p->px+1) == 'Z' ) || ((Elmt(room, p->py, p->px+1) - '1' >= 0) && (Elmt(room, p->py, p->px+1) - '1' <= 8)) || (p->px+1 > NKolEff(room))){ //kondisi dia gabisa gerak
+            printf("gabisa gerak kesitu\n");
+        }
+        else{     }
+            p->px++;
+        }
+    }
+
+    if(cmd == 's'){
+        if(( Elmt(room, p->py+1, p->px) == 'X' ) || (Elmt(room, p->py+1, p->px) == 'Y' ) || (Elmt(room, p->py+1, p->px) == 'Z' )|| ((Elmt(room, p->py+1, p->px) - '1' >= 0) && (Elmt(room, p->py+1, p->px) - '1' <= 8)) || (p->py+1 > NBrsEff(room))){ //kondisi dia gabisa gerak
+            printf("gabisa gerak kesitu\n");
+        }
+        else{
+            p->py++;
+        }
+    }
+}
+
+void NearestCust(player p, MATRIKS room, int *ordable){
+    char up, down, right, left;
+    
+    *ordable = Elmt(room, p.py, p.px) - '`';
+
+    if((*ordable > 9) || (*ordable < 1)){
+        *ordable = -999;
+    }
+}
