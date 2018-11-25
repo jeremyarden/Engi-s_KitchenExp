@@ -1,9 +1,4 @@
-/* NIM : 13517101
- Nama : Jeremy Arden Hartono
- Tanggal : 2 September 2018
- Topik Praktikum : ADT Jam
- Deskripsi : membuat abstract data type (ADT) untuk tipe jam
- */
+
 
 #include <stdio.h>
 #include <math.h>
