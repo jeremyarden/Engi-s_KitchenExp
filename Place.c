@@ -3,7 +3,7 @@
 //  CobaResep
 //
 //  Created by Abiyyu Ismunandar on 11/25/18.
-//  Copyright © 2018 Abiyyu Ismunandar. All rights reserved.
+//  Copyright Â© 2018 Abiyyu Ismunandar. All rights reserved.
 //
 
 #include "Place.h"
@@ -20,56 +20,47 @@ void mengantri(Queue *Q){
         Add(Q,X);
     }
 }
-void Place(Queue *Q,TabMeja *T,MATRIKS *M){
+void Place(player p,Queue *Q,TabMeja *T,MATRIKS *M){
     infoqueue Sampah;
     time_t t;
-    int i,dua=-1,empat=-1,until;
-    boolean found=false,sudah;
-    i=0;
+    int mja;
+    boolean sudah;
+    int i;
     srand((unsigned) time(&t));
-    while (!found&&i<=9){            //mencari posisi meja yang tepat
-        if (dua!=-1&&empat!=-1){    //jika sudah menemukan posisi meja 2/4
-            found=true;
-        }else if(!Elmtterisi(*T,i)){    //jika meja sudah terisi
-            if (Elmtisi(*T,i)==2){
-                dua=i;            //jika ada meja isi 2 yang belum terisi dua berisi indeks mejanya
-            }else{
-                empat=i;    //jika ada meja isi 4 yang belum terisi empat berisi indeks mejanya
-            }
-        }
-        i++;
-    }
-    i=Head(*Q);
-    if ((InfoOrang(*Q,i)==4)&&(empat!=-1)){    //jika butuh 4 kursi dan ada meja 4 kursi yang kosong
-        isimeja(T,M,empat,4,(rand()%25+25));    //isi meja dengan kesabaran random dari 25-49
-        Del(Q,&Sampah);
-    }else if ((InfoOrang(*Q,i)==2)&&(dua!=-1)){ //jika butuh 2 kursi dan ada meja 2 kursi yang kosong
-        isimeja(T,M,dua,2,(rand()%25+25)); //isi meja dengan kesabaran random dari 25-49
-        Del(Q,&Sampah);
-    }else if ((InfoOrang(*Q,i)==2)&&(empat!=-1)){ //jika butuh 2 kursi dan ada meja 4 kursi yang kosong
-        isimeja(T,M,empat,2,(rand()%25+25)); //isi meja dengan kesabaran random dari 25-49
-        Del(Q,&Sampah);
-    }else if ((InfoOrang(*Q,i)==4)&&(dua!=-1)){ //jika butuh 4 kursi dan ada meja 2 kursi yang kosong
-        if (i>Tail(*Q)){                        //ubah agar traversal berjalan karena menggunakan Queue circular
-            until=Tail(*Q)+MaxEl(*Q);
-        }else{
-            until=Tail(*Q);
-        }
-        i++;
-        sudah=false;
-        while (until>=i&&!sudah){    //mencari antrian yang butuh 2 kursi saja
-            if (InfoOrang(*Q,(i-1)%MaxEl(*Q)+1)==2){
-                isimeja(T,M,dua,2,(rand()%25+25)); //isi meja dengan kesabaran random dari 25-49
-                sudah=true;
-                Deli(Q,(i-1)%MaxEl(*Q)+1,&Sampah);
-            }else{
-                i++;
-            }
-        }
-        if (!sudah){    //jika tidak ada yang hanya butuh 2 kursi maka tidak ada yang kosong
-            printf("Tidak ada tempat kosong, mohon bersabar\n");
-        }
-    }else{         //jika meja penuh
-        printf("Tidak ada tempat kosong, mohon bersabar\n");
-    }
+    if ((Elmt(*M, X(p), Y(p))>='a')&&Elmt(*M, X(p), Y(p))<='j'){
+		mja=Elmt(*M, X(p), Y(p))-'a'+1;
+	    i=Head(*Q);
+	    if (!Elmtterisi(*T,mja)){
+	    	if(Elmtisi(*T,mja)==4){
+	    		isimeja(*T,*M,mja,infoOrang(*Q,i),(rand()%25+25));
+				Deli(*Q,i,&Sampah)
+			}else if(Elmtisi(*T,mja)==2&&infoOrang(*Q,i)==2){
+	    		isimeja(*T,*M,mja,infoOrang(*Q,i),(rand()%25+25));
+				Deli(*Q,i,&Sampah)
+			}else{
+				if (i>Tail(*Q)){
+					until=Tail(*Q)+MaxEl(*Q);
+				}else{
+					until=Tail(*Q);
+				}
+				sudah=false;
+				while (until>=i&&!sudah){
+					if (infoOrang(*Q,(i-1)%MaxEl(*Q)+1)==2){
+						isimeja(*T,*M,mja,2,(rand()%25+25));
+						sudah=true;
+						Deli(*Q,(i-1)%MaxEl(*Q)+1,&Sampah)
+					}else{
+						i++;
+					}
+				}	
+				if (!sudah){
+					printf("Tidak ada tempat kosong, mohon bersabar\n");
+				}
+			}
+		}else{
+			printf("Meja Penuh\n");
+		}
+	}else{
+		printf("Tidak ada meja\n");
+	}
 }
