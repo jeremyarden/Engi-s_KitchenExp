@@ -47,4 +47,7 @@ void order(player p,TabOrd *T, MATRIKS M, Kata * arr_makanan);
 //Stack ord adalah stack yang berisi orderan
 //Matriks M adalah board ruangan
 */
+
+void printOrder(TabOrd Ord);
+// mengeprint order Ord
  #endif /* order_h */
