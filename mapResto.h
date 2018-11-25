@@ -4,6 +4,7 @@
 #include "matriks.h"
 #include "graph.h"
 #include <stdio.h>
+#include "point.h"
 
 #define MARK '.'
 /* State Mesin */
@@ -11,13 +12,12 @@ extern char CC;
 extern boolean EOP;
 
 typedef struct{
-    int px; //ngasihtau player ada di baris berapa di ruangan
-    int py;//ngasihtau player ada di kolom berapa di ruangan
+    POINT px; //ngasih tau player ada di baris dan kolom berapa di ruangan
     int room;//ngasihtau player ada di ruangan mana
 }player;
 
-#define X(P) (P).px
-#define Y(P) (P).py
+#define X(P) (P).px.X
+#define Y(P) (P).px.Y
 #define Room(P) (P).room
 
 void STARTRESTO(FILE *fp);
