@@ -1,71 +1,52 @@
 #include <stdio.h>
+#include "resep.h"
+#include "start.h"
 #include "mapResto.h"
-#include "graph.h"
-
+#include "arraymeja.h"
+/*Variabel Global*/
+MATRIKS Ruang1,Ruang2,Ruang3,Dapur;
+BinTree Resep;
+TabName TNama;
+TabMenu TMenu;
+TabMeja TMeja;
+GameStatus Pemain;
+/*Prototype Fungsi*/
+void InitGame();
+void GAMESTART();
 int main()
 {
-    FILE *mantul;
-    Graph GMap;
-    player Pl;
-    char cmd, abc;
-    int ordable;
-    adrNode currLoc;
-    adrSuccNode P;
-    MATRIKS room1, room2, room3, kitchen, rcopy;
-
-    InitMap(&room1, &room2, &room3, &kitchen);
-    InitGraph(&GMap);
-    currLoc = First(GMap);
-
-    //coba inisialisasi player di ruangan 1, tulis map di keadaan itu
-    
-    X(Pl) = 5;
-    Y(Pl) = 5;
-    Room(Pl) = Id(currLoc);
-    if (Id(currLoc) == 1)
-    {
-        CopyMATRIKS(room1, &rcopy);
-    }
-    else if (Id(currLoc) == 2)
-    {
-        CopyMATRIKS(room2, &rcopy);
-    }
-    else if (Id(currLoc) == 3)
-    {
-        CopyMATRIKS(room3, &rcopy);
-    }
-    else if (Id(currLoc) == 4)
-    {
-        CopyMATRIKS(kitchen, &rcopy);
-    }
-    Elmt(rcopy, X(Pl), Y(Pl)) = 'U';
-    TulisMATRIKS(rcopy);
-
-    scanf("%c", &cmd);
-    while (cmd != 'x')
-    {
-        Elmt(rcopy, X(Pl), Y(Pl)) = '#';
-        moveplayer(&Pl, rcopy, cmd, GMap, &currLoc);
-        Room(Pl) = Id(currLoc);
-        if (Id(currLoc) == 1)
-        {
-            CopyMATRIKS(room1, &rcopy);
-        }
-        else if (Id(currLoc) == 2)
-        {
-            CopyMATRIKS(room2, &rcopy);
-        }
-        else if (Id(currLoc) == 3)
-        {
-            CopyMATRIKS(room3, &rcopy);
-        }
-        else if (Id(currLoc) == 4)
-        {
-            CopyMATRIKS(kitchen, &rcopy);
-        }
-        Elmt(rcopy, X(Pl), Y(Pl)) = 'U';
-        TulisMATRIKS(rcopy);
-        scanf(" %c", &cmd);
-    }
+    /*Kamus*/
+    /*Algoritma*/
+    InitGame();
+    GAMESTART();
     return 0;
 }
+
+void InitGame()
+{
+    InitMap(&Ruang1, &Ruang2, &Ruang3, &Dapur);
+    SetStart(&Pemain);
+    MakeEmptyTabName(&TNama);
+    makeResep(&Resep);
+    setTabMenu(&TMenu, Resep);
+    MakeMeja(&TMeja);
+}
+
+void GAMESTART()
+{
+    boolean isMember;
+    RegistName(&TNama,&isMember);
+    if(isMember)
+    {
+        printf("Selamat Datang Kembali: ");
+        printKata(TNama.TN[IsMemberIdx(TNama, CKata)]);printf("\n");
+    } else
+    {
+        printf("Selamat Datang: ");
+        printKata(TNama.TN[TNama.Neff]);printf("\n");
+    }
+    
+    
+    
+}
+
