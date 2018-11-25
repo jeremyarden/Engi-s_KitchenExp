@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "boolean.h"
+#include <AssertMacros.h>
 
 #define NilQueue 0
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
@@ -24,7 +25,7 @@ typedef struct {
     infoqueue * T;   /* tabel penyimpan elemen */
     address HEAD;  /* alamat penghapusan */
     address TAIL;  /* alamat penambahan */
-    int MaxEl;     /* Max elemen queue */
+    int Maxl;     /* Max elemen queue */
 } Queue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */
@@ -37,7 +38,7 @@ typedef struct {
 #define InfoOrang(Q,i) (Q).T[i].orang
 #define InfoKesabaran(Q,i) (Q).T[i].kesabaran
 #define InfoTail(Q) (Q).T[(Q).TAIL]
-#define MaxEl(Q) (Q).MaxEl
+#define MaxEl(Q) (Q).Maxl
 
 /* ********* Prototype ********* */
 boolean QueueIsEmpty (Queue Q);

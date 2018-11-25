@@ -113,6 +113,7 @@ void GAMESTART()
     }
     Elmt(ruangan, X(p), Y(p)) = 'U';
     TulisMATRIKS(ruangan);
+    
     InputUser();
     while (!(CKata.TabKata[1]=='E' && CKata.TabKata[2]=='X' && CKata.TabKata[3]=='I' && CKata.TabKata[4]=='T')) {
         if (CKata.Length==2) {
@@ -222,5 +223,14 @@ void GAMESTART()
             InputUser();
         }
         InputUser();
+        
+        printf("Order\n");
+        printOrder(Order);
+        printQueue(Q);
+        printf("Hand\n");
+        printStack(&Hand);
+        printf("Tray\n");
+        printStack(&Tray);
+        
     }
 }

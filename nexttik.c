@@ -3,7 +3,7 @@
 
 //jadi nexttik nambah waktu sama ngurangi kesabaran sekaligus klo udah gak sabar hapus pelanggan sambil kredibilitas ngurang
 //Queue masih biasa belum prio
-void NextTik(JAM *J,int *day,TabMeja *Meja,Queue *antrean,int *kredibilitas,boolean *exit,player p,MATRIKS *room1,MATRIKS * room2,MATRIKS * room3)
+void NextTik(TabOrd *T,JAM *J,int *day,TabMeja *Meja,Queue *antrean,int *kredibilitas,boolean *exit,player p,MATRIKS *room1,MATRIKS * room2,MATRIKS * room3)
 {
     long tik;
     int i;
@@ -26,6 +26,7 @@ void NextTik(JAM *J,int *day,TabMeja *Meja,Queue *antrean,int *kredibilitas,bool
                 }else if (Elmtroom(*Meja,i)==3){
                     kosongmeja(Meja,room3,i);
                 }
+                DelOrd(T, i);
                 *kredibilitas-=1;
             }
         }
