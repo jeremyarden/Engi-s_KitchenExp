@@ -76,4 +76,8 @@ void pindah(Queue *Q,int x,int y);
 // Pindah indeks queue ke x ke y
 void Deli (Queue * Q,int i, infoqueue * X);
 // delete indeks ke i
+void CopyQueue(Queue X,Queue *Y);
+// mengcopy queue X ke Y
+void printQueue(Queue antrian);
+// menulis Queue
 #endif
