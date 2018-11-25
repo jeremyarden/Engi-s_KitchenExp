@@ -38,7 +38,7 @@ IdxType SearchOrd (TabOrd T, Kata X);
 void DelOrd(TabOrd *T, IdxType idx);
 /*Delete Elmt(T, idx), dan menjaga array TabOrd tetap kontigu*/
 
-void order(TabOrd *T, MATRIKS M, Kata * arr_makanan);
+void order(player p,TabOrd *T, MATRIKS M, Kata * arr_makanan);
 /*matriks itu buat
 //Variables
 //Stack ord adalah stack yang berisi orderan
