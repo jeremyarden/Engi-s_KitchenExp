@@ -11,7 +11,7 @@ void NextTik(JAM *J,int *day,TabMeja *Meja,Queue *antrean,int *kredibilitas,bool
     infoqueue sampah;
     *J=NextDetik(*J);
     if (Hour(*J)==0&&Minute(*J)==0&&Second(*J)==0){            //nambah hari jika sebelumnya 23.59.59
-        *day=+1;
+        *day+=1;
     }
     //amtrian, keesabaran
     //kurangin kesabaran sama kredibilitas
@@ -45,4 +45,5 @@ void NextTik(JAM *J,int *day,TabMeja *Meja,Queue *antrean,int *kredibilitas,bool
     if (*kredibilitas==0){
         *exit=true;
     }
+    mengantri(antrean);
 }
