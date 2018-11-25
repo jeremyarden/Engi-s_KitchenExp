@@ -57,5 +57,6 @@ void Pop (Stack * S, infotypeStack* X);
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
-
+void balik(Stack *s1,Stack *s2); 
+//balik stack s1 menjadi s2    
 #endif
