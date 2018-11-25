@@ -11,10 +11,11 @@
 
 #include <stdio.h>
 #include "boolean.h"
+#include "mapResto.h"
 #include "queue.h"
 #include "arraymeja.h"
 #include <stdlib.h>
 #include <time.h>
 void mengantri(Queue *Q);
-void Place(Queue *Q,TabMeja *T,MATRIKS *M);
+void Place(player p,Queue *Q,TabMeja *T,MATRIKS *M);
 #endif /* Place_h */
