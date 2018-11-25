@@ -58,7 +58,7 @@ void printStack(Stack *s){
 	while (!IsEmpty(*s)){
 		Pop(s,&tmp);
 		for(i=0;i<tmp.Length;i++){
-			printf("%c");
+			printf("%c",InfoTop(*s).TabKata[i]);
 		}
 		printf("\n");
 		Push(&stmp,tmp);
