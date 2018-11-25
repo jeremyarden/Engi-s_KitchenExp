@@ -59,4 +59,6 @@ void Pop (Stack * S, infotypeStack* X);
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 void balik(Stack *s1,Stack *s2); 
 //balik stack s1 menjadi s2    
+void printStack(Stack S);
+//menuliskan Stack S
 #endif
