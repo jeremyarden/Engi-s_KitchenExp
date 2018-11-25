@@ -6,7 +6,7 @@
 void MakeMeja (TabMeja * T){
     int i;
     /* I.S. T sembarang */
-    /* F.S. Terbentuk tabel T kosong dengan kapasitas IdxMax-IdxMin+1 */
+    /* F.S. Terbentuk tabel T yang telah diinisialisasi*/
     Elmtisi(*T,0)=2;
     Elmtisi(*T,1)=4;
     Elmtisi(*T,2)=2;
@@ -27,8 +27,8 @@ void MakeMeja (TabMeja * T){
     Elmtkesabaran(*T,7)=Inf;
     Elmtkesabaran(*T,8)=Inf;
     Elmtkesabaran(*T,9)=Inf;
-    Elmtx(*T,0)=6;
-    Elmty(*T,0)=3;
+    Elmtx(*T,0)=2;
+    Elmty(*T,0)=6;
     Elmtx(*T,1)=2;
     Elmty(*T,1)=2;
     Elmtx(*T,2)=7;
@@ -43,9 +43,9 @@ void MakeMeja (TabMeja * T){
     Elmty(*T,6)=1;
     Elmtx(*T,7)=7;
     Elmty(*T,7)=6;
-    Elmtx(*T,8)=2;
-    Elmty(*T,8)=2;
-    Elmtx(*T,9)=3;
+    Elmtx(*T,8)=5;
+    Elmty(*T,8)=3;
+    Elmtx(*T,9)=7;
     Elmty(*T,9)=6;
     Elmtroom(*T,0)=3;
     Elmtroom(*T,1)=1;
