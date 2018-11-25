@@ -27,4 +27,8 @@ void FileToMap(FILE *fp, MATRIKS *room);
 void InitMap(MATRIKS *room1, MATRIKS *room2, MATRIKS *room3, MATRIKS *kitchen);
 void moveplayer(player *p, MATRIKS *room, char cmd);
 void NearestCust(player p, MATRIKS room, int *ordable);
+void ChangeRoom(Graph G, adrNode *currLoc, player *P);
+boolean AvailOrder(player P, MATRIKS room)
+
+
 #endif

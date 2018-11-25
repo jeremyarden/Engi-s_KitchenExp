@@ -72,7 +72,7 @@ void InitMap(MATRIKS *room1, MATRIKS *room2, MATRIKS *room3, MATRIKS *kitchen)
     FileToMap(fp, kitchen);
 }
 
-void moveplayer(player *p, MATRIKS room, char cmd){
+void moveplayer(player *p, MATRIKS room, char cmd, Graph G, adrNode *currLoc){
     if(cmd == 'w'){
         if( (Elmt(room, (p->py)-1, p->px) == 'X' ) || (Elmt(room, (p->py)-1, p->px) == 'Y' ) || (Elmt(room, (p->py)-1, p->px) == 'Z' ) || ((Elmt(room, (p->py)-1, p->px) - '1' >= 0) && (Elmt(room, (p->py)-1, p->px) - '1' <= 8)) || (p->py-1 < 0)){ //kondisi dia gabisa gerak
             printf("gabisa gerak kesitu\n");
@@ -108,7 +108,11 @@ void moveplayer(player *p, MATRIKS room, char cmd){
         else{
             p->py++;
         }
+
+
     }
+
+    ChangeRoom(G, currLoc, P);
 }
 
 void NearestCust(player p, MATRIKS room, int *ordable){
@@ -195,4 +199,16 @@ void ChangeRoom(Graph G, adrNode *currLoc, player *P)
 void PrintMap(player P)
 {
 
+}
+
+boolean AvailOrder(player P, MATRIKS room)
+{
+    if (Elmt(room, X(P), Y(P)) >= 'a' && Elmt(room, X(P), Y(P)) <= 'j')
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
 }
