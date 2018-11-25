@@ -1,10 +1,10 @@
 #ifndef takechct_H
 #define takechct_H
 
-#include "stackt.c"
+#include "stackt.h"
 #include "matriks.h"
 
-void Take (Stack *Hand, MATRIKS M);
+void Take (Stack *Hand, ElType M);
 
 void Ch (Stack *Hand, infotypeStack *Sampah);
 

@@ -10,17 +10,17 @@
 typedef struct tNode *adrNode;
 typedef struct tSuccNode *adrSuccNode;
 typedef struct tNode{
-                    int Id;
-                    int NPred;
-                    adrSuccNode Trail;
-                    adrNode Next;
+    int Id;
+    int NPred;
+    adrSuccNode Trail;
+    adrNode Next;
 } Node;
 typedef struct tSuccNode {
-                    adrNode Succ;
-                    adrSuccNode Next;
+    adrNode Succ;
+    adrSuccNode Next;
 } SuccNode;
 typedef struct {
-                    adrNode First;
+    adrNode First;
 } Graph;
 
 #define First(G) (G).First
