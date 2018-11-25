@@ -41,7 +41,76 @@ int main()
         }
         scanf("%c", &cmd);
     }*/
-
+    
+    /* BUAT COMMAND TAKECHCT
+    if (cc=='A') {
+        CKata="Piring";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='B') {
+        CKata="Sendok";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='C') {
+        CKata="Garpu";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='D') {
+        CKata="Es Krim";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='E') {
+        CKata="Nasi";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='F') {
+        CKata="Roti";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='G') {
+        CKata="Spaghetti";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='H') {
+        CKata="Pisang";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='I') {
+        CKata="Stroberi";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='J') {
+        CKata="Stroberi";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='K') {
+        CKata="Telur";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='L') {
+        CKata="Ayam Goreng";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='M') {
+        CKata="Patty";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='N') {
+        CKata="Sosis";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='O') {
+        CKata="Bolognese";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='P') {
+        CKata="Carbonara";
+        Take(*Hand, CKata);
+    }
+    else if (cc=='Q') {
+        CKata="Keju";
+        Take(*Hand, CKata);
+    }
 
 
     return 0;
