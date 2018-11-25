@@ -116,17 +116,21 @@ void TulisMATRIKS (MATRIKS M)
 {
     indeks i, j;
 
+    printf("=================================\n");
     for (i = 1; i <= NBrsEff(M); i++)
     {
+        printf("|");
         for (j = 1; j <= NKolEff(M); j++)
         {
-            if(((Elmt(M, i, j) >= 'a') && (Elmt(M, i, j) <= 'j')) || ((Elmt(M, i, j) >= 'A') && (Elmt(M, i, j) <= 'R'))){
-                printf("# ");
+            if (Elmt(M, i, j) == 'X' || Elmt(M, i, j) == 'Y' || Elmt(M, i, j) == 'Z' || (Elmt(M, i, j) >= '0' && Elmt(M, i, j) <= '9') || Elmt(M, i, j) == 'U'){
+                printf(" %c |", Elmt(M, i, j));
             }
             else{
-                printf("%c ", Elmt(M, i, j));
+                printf("   |");
             }
         }
         printf("\n");
+        printf("=================================\n");
     }
+    printf("\n");
 }
