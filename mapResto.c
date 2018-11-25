@@ -70,54 +70,101 @@ void InitMap(MATRIKS *room1, MATRIKS *room2, MATRIKS *room3, MATRIKS *kitchen)
     FileToMap(fp, kitchen);
 }
 
-void moveplayer(player *p, MATRIKS room, char cmd, Graph G, adrNode *currLoc)
+boolean IsDoor(player P)
 {
-    if(cmd == 'w'){
-        if( (Elmt(room, (p->py)-1, p->px) == 'X' ) || (Elmt(room, (p->py)-1, p->px) == 'Y' ) || (Elmt(room, (p->py)-1, p->px) == 'Z' ) || ((Elmt(room, (p->py)-1, p->px) - '1' >= 0) && (Elmt(room, (p->py)-1, p->px) - '1' <= 8)) || (p->py-1 < 0)){ //kondisi dia gabisa gerak
-            printf("gabisa gerak kesitu\n");
-        }
-        else{
-            p->py--;
-        }
-        
+    if ((X(P) == 5 && Y(P) == 9 && Room(P) == 1) || (X(P) == 9 && Y(P) == 5 && Room(P) == 1))
+    {
+        return true;
     }
-    
-    if(cmd == 'a'){
-        if(( Elmt(room, p->py, p->px-1) == 'X' ) || ( Elmt(room, p->py, p->px-1) == 'Y' ) || ( Elmt(room, p->py, p->px-1) == 'Z' ) || ((Elmt(room, p->py, p->px-1) - '1' >= 0) && (Elmt(room, p->py, p->px-1) - '1' <= 8)) || (p->px-1 < 0)){ //kondisi dia gabisa gerak
-            printf("gabisa gerak kesitu\n");
-        }
-        else{
-            p->px--;
-        }
+    else if ((X(P) == 2 && Y(P) == 0 && Room(P) == 2) || (X(P) == 9 && Y(P) == 5 && Room(P) == 2))
+    {
+        return true;
     }
-    
-    if(cmd == 'd'){
-        if(( Elmt(room, p->py, p->px+1) == 'X' ) || (Elmt(room, p->py, p->px+1) == 'Y' ) || (Elmt(room, p->py, p->px+1) == 'Z' ) || ((Elmt(room, p->py, p->px+1) - '1' >= 0) && (Elmt(room, p->py, p->px+1) - '1' <= 8)) || (p->px+1 > NKolEff(room))){ //kondisi dia gabisa gerak
-            printf("gabisa gerak kesitu\n");
-        }
-        else{     }
-        p->px++;
+    else if ((X(P) == 0 && Y(P) == 5 && Room(P) == 3) || (X(P) == 2 && Y(P) == 0 && Room(P) == 3))
+    {
+        return true;
     }
-
-
-if(cmd == 's')
-{
-    if(( Elmt(room, p->py+1, p->px) == 'X' ) || (Elmt(room, p->py+1, p->px) == 'Y' ) || (Elmt(room, p->py+1, p->px) == 'Z' )|| ((Elmt(room, p->py+1, p->px) - '1' >= 0) && (Elmt(room, p->py+1, p->px) - '1' <= 8)) || (p->py+1 > NBrsEff(room)))
-    { //kondisi dia gabisa gerak
-        printf("gabisa gerak kesitu\n");
+    else if ((X(P) == 5 && Y(P) == 9 && Room(P) == 4) || (X(P) == 0 && Y(P) == 5 && Room(P) == 4))
+    {
+        return true;
     }
-    else{
-        p->py++;
+    else
+    {
+        return false;
     }
-    
-    
 }
 
-ChangeRoom(G, currLoc, p);
+void moveplayer(player *P, MATRIKS room, char cmd, Graph G, adrNode *currLoc)
+{
+    if (cmd == 'w')
+    {
+        if (Elmt(room, (X(*P)-1), Y(*P)) == 'X' || Elmt(room, (X(*P)-1), Y(*P)) == 'Y' || Elmt(room, (X(*P)-1), Y(*P)) == 'Z' || (Elmt(room, (X(*P)-1), Y(*P)) >= '0' && Elmt(room, (X(*P)-1), Y(*P)) <= '9'))
+        {
+            printf("cant nigger\n");
+        }
+        else
+        {
+            X(*P) = X(*P) - 1;
+            if (X(*P) < 1 && !IsDoor(*P))
+            {
+                printf("cant nigger\n");
+                X(*P) = X(*P) + 1;
+            }
+        }
+    }
+    else if (cmd == 's')
+    {
+        if (Elmt(room, (X(*P)+1), Y(*P)) == 'X' || Elmt(room, (X(*P)+1), Y(*P)) == 'Y' || Elmt(room, (X(*P)+1), Y(*P)) == 'Z' || (Elmt(room, (X(*P)+1), Y(*P)) >= '0' && Elmt(room, (X(*P)+1), Y(*P)) <= '9'))
+        {
+            printf("cant nigger\n");
+        }
+        else
+        {
+            X(*P) = X(*P) + 1;
+            if (X(*P) > NKolEff(room) && !IsDoor(*P))
+            {
+                printf("cant nigger\n");
+                X(*P) = X(*P) - 1;
+            }
+        }
+    }
+    else if (cmd == 'a')
+    {
+        if (Elmt(room, X(*P), (Y(*P)-1)) == 'X' || Elmt(room, X(*P), (Y(*P)-1)) == 'Y' || Elmt(room, X(*P), (Y(*P)-1)) == 'Z' || (Elmt(room, X(*P), (Y(*P)-1)) >= '0' && Elmt(room, X(*P), (Y(*P)-1)) <= '9'))
+        {
+            printf("cant nigger\n");
+        }
+        else
+        {
+            Y(*P) = Y(*P) - 1;
+            if (Y(*P) < 1 && !IsDoor(*P))
+            {
+                printf("cant nigger\n");
+                Y(*P) = Y(*P) + 1;
+            }
+        }
+    }
+    else if (cmd == 'd')
+    {
+        if (Elmt(room, X(*P), (Y(*P)+1)) == 'X' || Elmt(room, X(*P), (Y(*P)+1)) == 'Y' || Elmt(room, X(*P), (Y(*P)+1)) == 'Z' || (Elmt(room, X(*P), (Y(*P)+1)) >= '0' && Elmt(room, X(*P), (Y(*P)+1)) <= '9'))
+        {
+            printf("cant nigger\n");
+        }
+        else
+        {
+            Y(*P) = Y(*P) + 1;
+            if (Y(*P) > NKolEff(room) && !IsDoor(*P))
+            {
+                printf("cant nigger\n");
+                Y(*P) = Y(*P) - 1;
+            }
+        }
+    }
+
+    ChangeRoom(G, currLoc, P);
 }
 
 void NearestCust(player p, MATRIKS room, int *ordable){
-    char up, down, right, left;
     
     *ordable = Elmt(room, p.py, p.px) - '`';
     
@@ -197,11 +244,6 @@ void ChangeRoom(Graph G, adrNode *currLoc, player *P)
     
 }
 
-void PrintMap(player P)
-{
-    
-}
-
 boolean AvailOrder(player P, MATRIKS room)
 {
     if (Elmt(room, X(P), Y(P)) >= 'a' && Elmt(room, X(P), Y(P)) <= 'j')
@@ -213,3 +255,4 @@ boolean AvailOrder(player P, MATRIKS room)
         return false;
     }
 }
+
