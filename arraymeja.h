@@ -1,8 +1,8 @@
 /* MODUL TABEL INTEGER */
 /* Berisi definisi dan semua primitif pemrosesan tabel integer */
 /* Penempatan elemen selalu rapat kiri */
-/* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit, 
-   memori tabel statik */
+/* Versi I : dengan banyaknya elemen didefinisikan secara eksplisit,
+ memori tabel statik */
 
 #ifndef ARRAYMEJA_H
 #define ARRAYMEJA_H
@@ -14,35 +14,35 @@
 /* Indeks maksimum array, sekaligus ukuran maksimum array dalam C */
 #define IdxMin 0
 /* Indeks minimum array */
-#define IdxUndef -999 
+#define IdxUndef -999
 /* Indeks tak terdefinisi*/
 
 /* Definisi elemen dan koleksi objek */
 typedef int IdxType;  /* type indeks */
 typedef struct{
-	int isi;
-	int x;
-	int y;
-	int room;
-	int kesabaran;
-	boolean terisi;
+    int isi;
+    int x;
+    int y;
+    int room;
+    int kesabaran;
+    boolean terisi;
 } ElMejaType;   /* type elemen tabel */
-typedef struct { 
-	ElMejaType Meja[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
-	int Neff; /* >=0, banyaknya elemen efektif */
+typedef struct {
+    ElMejaType Meja[IdxMax+1]; /* memori tempat penyimpan elemen (container) */
+    int Neff; /* >=0, banyaknya elemen efektif */
 } TabMeja;
 /* Indeks yang digunakan [IdxMin..IdxMax] */
 /* Jika T adalah TabInt, cara deklarasi dan akses: */
 /* Deklarasi : T : TabInt */
-/* Maka cara akses: 
-   T.Neff  untuk mengetahui banyaknya elemen 
-   T.TI    untuk mengakses seluruh nilai elemen tabel 
-   T.TI[i] untuk mengakses elemen ke-i */
-/* Definisi : 
-  Tabel kosong: T.Neff = 0
-  Definisi elemen pertama : T.TI[i] dengan i=1 
-  Definisi elemen terakhir yang terdefinisi: T.TI[i] dengan i=T.Neff */
-  
+/* Maka cara akses:
+ T.Neff  untuk mengetahui banyaknya elemen
+ T.TI    untuk mengakses seluruh nilai elemen tabel
+ T.TI[i] untuk mengakses elemen ke-i */
+/* Definisi :
+ Tabel kosong: T.Neff = 0
+ Definisi elemen pertama : T.TI[i] dengan i=1
+ Definisi elemen terakhir yang terdefinisi: T.TI[i] dengan i=T.Neff */
+
 /* ********** SELEKTOR ********** */
 #define Neff(T)   (T).Neff
 #define Meja(T)     (T).Meja
@@ -61,7 +61,7 @@ void MakeMeja (TabMeja * T);
 
 /* ********** SELEKTOR (TAMBAHAN) ********** */
 /* *** Banyaknya elemen *** */
-int NbElmt (TabMeja T);
+int NbElmtTabMeja (TabMeja T);
 /* Mengirimkan banyaknya elemen efektif tabel */
 /* Mengirimkan nol jika tabel kosong */
 /* *** Daya tampung container *** */

@@ -5,23 +5,27 @@
 #ifndef queue_H
 #define queue_H
 
+#include <stdio.h>
+#include <stdlib.h>
 #include "boolean.h"
 
 #define Nil 0
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */
-typedef struct	{ int orang;
-				  int kesabaran;
-				} infoqueue;
+typedef struct    {
+    int orang;
+    int kesabaran;
+} infoqueue;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
-typedef struct { infoqueue * T;   /* tabel penyimpan elemen */
-                 address HEAD;  /* alamat penghapusan */
-                 address TAIL;  /* alamat penambahan */
-                 int MaxEl;     /* Max elemen queue */                 
-               } Queue;
+typedef struct {
+    infoqueue * T;   /* tabel penyimpan elemen */
+    address HEAD;  /* alamat penghapusan */
+    address TAIL;  /* alamat penambahan */
+    int MaxEl;     /* Max elemen queue */
+} Queue;
 /* Definisi Queue kosong: HEAD=Nil; TAIL=Nil. */
 /* Catatan implementasi: T[0] tidak pernah dipakai */
 
@@ -66,8 +70,8 @@ void Add (Queue * Q, infoqueue X);
 void Del (Queue * Q, infoqueue * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
-/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
-        Q mungkin kosong */
+/* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer;
+ Q mungkin kosong */
 void pindah(Queue *Q,int x,int y);
 // Pindah indeks queue ke x ke y
 void Deli (Queue * Q,int i, infoqueue * X);
