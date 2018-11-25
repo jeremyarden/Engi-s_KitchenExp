@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "jam.c"
-#include "stackt.c"
+#include "jam.h"
+#include "stackt.h"
 //jadi nexttik nambah waktu sama ngurangi kesabaran sekaligus klo udah gak sabar hapus pelanggan sambil kredibilitas ngurang
 //Queue masih biasa belum prio
 void NextTik(JAM *J,int *day,TabMeja *Meja,Queue *antrean,int *kredibilitas,boolean *exit,player p,MATRIKS *room1,*room2,*room3){
