@@ -2,10 +2,13 @@
 #include "resep.h" 
 #include "start.h" 
 #include "Place.h"
+#include "put.h"
+#include "graph.h"
 #include "takechct.h"
 #include "mapResto.h"
 #include "arraymeja.h"
-#include "order.c"
+#include "order.h"
+#include "nexttik.h"
 
 /*Variabel Global*/
 MATRIKS Ruang1,Ruang2,Ruang3,Dapur;
@@ -13,7 +16,7 @@ BinTree Resep;
 TabName TNama;
 TabMenu TMenu;
 TabMeja TMeja;
-TabOrd order;
+TabOrd Order;
 
 Stack Hand, Tray;
 GameStatus Pemain;
@@ -21,7 +24,6 @@ player p;
 MATRIKS ruangan, rtemp;
 char cmd;
 int ordable;
-Kata CKata;
 Graph GMap;
 adrNode currLoc;
 Queue Q;
@@ -51,6 +53,8 @@ int main()
 
 void InitGame()
 {
+    int i;
+    infoqueue X;
     InitMap(&Ruang1, &Ruang2, &Ruang3, &Dapur);
     SetStart(&Pemain);
     MakeEmptyTabName(&TNama);
@@ -59,7 +63,8 @@ void InitGame()
     i=rand()%2;
     X.orang=2+i*2; //acak jumlah orang 2/4 orang
     X.kesabaran=30; //kesabaran 30
-    Add(Q,X);
+    QueueCreateEmpty(&Q, 10);
+    Add(&Q,X);
     /*makeResep(&Resep);
     setTabMenu(&TMenu, Resep);
     MakeMeja(&TMeja);*/
@@ -121,6 +126,7 @@ void GAMESTART()
                     Elmt(ruangan, X(p), Y(p)) = 'U';
                     NearestCust(p, rtemp, &ordable);
                     TulisMATRIKS(ruangan);
+                    
                 }
                 else if (CKata.TabKata[2]=='D') {
                     char cmd = 's';
@@ -184,10 +190,10 @@ void GAMESTART()
         }
         else if (CKata.Length==4) {
             if (CKata.TabKata[1]=='T' && CKata.TabKata[2]=='A' && CKata.TabKata[3]=='K' && CKata.TabKata[4]=='E') {
-                Take(&Hand,Elmt(ruangan,X(p),Y(p)));
+                Take(&Hand,Elmt(ruangan,X(p),Y(p)),TMenu);
             }
             else if (CKata.TabKata[1]=='G' && CKata.TabKata[2]=='I' && CKata.TabKata[3]=='V' && CKata.TabKata[4]=='E') {
-                Give(&Tray,&TabOrd,&Pemain,p,&TMeja,&Ruang1,&Ruang2,&Ruang3);
+                Give(&Tray,&Order,&Pemain,p,&TMeja,&Ruang1,&Ruang2,&Ruang3);
             }
             else {
                 printf("Masukan salah\n");
@@ -199,7 +205,7 @@ void GAMESTART()
                 Place(&Q,&TMeja,&ruangan);
             }
             else if (CKata.TabKata[1]=='O' && CKata.TabKata[2]=='R' && CKata.TabKata[3]=='D' && CKata.TabKata[4]=='E' && CKata.TabKata[5]=='R') {
-                order(p,&TabOrd,ruangan,TMenu);
+                order(p,&Order,ruangan,TMenu); 
             }
             else {
                 printf("Masukan salah\n");

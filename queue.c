@@ -63,7 +63,7 @@ void Add (Queue * Q, infoqueue X)
     if (QueueIsEmpty(*Q)){
         Head(*Q)=1;
     }
-    Tail(*Q)=(Tail(*Q)%MaxEl(*Q))+1;
+    Tail(*Q)=(Tail(*Q) % MaxEl(*Q) )+ 1;
     InfoTail(*Q)=X;
 }
 void Del (Queue * Q, infoqueue * X)
@@ -116,7 +116,7 @@ void CopyQueue(Queue X,Queue *Y){
     QueueCreateEmpty(&save,999);
     infoqueue e;
     while (!QueueIsEmpty(X)){ 
-        Del(X,&e);
+        Del(&X,&e);
         Add(Y,e);
     }
 }
@@ -125,7 +125,7 @@ void printQueue(Queue antrian){
     infoqueue X;
     QueueCreateEmpty(&tmp,999);
     CopyQueue(antrian,&tmp);
-    printf("Antrian pelanggan\n")
+    printf("Antrian pelanggan\n");
     while (!QueueIsEmpty(tmp)){
         Del(&tmp,&X);
         printf("%d\n",InfoHead(tmp).orang);

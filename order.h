@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "boolean.h"
+#include "resep.h"
 #include "mesinkata.h"
 #include "mapResto.h"
 #include "matriks.h"
@@ -27,7 +28,7 @@ typedef struct {
 #define TO(T)     (T).TO
 #define ElmtOrd(T,i) (T).TO[(i)]
 #define Food(T,i) (T).TO[(i)].food
-#define Meja(T,i) (T).TO[(i)].meja
+#define MejaOrd(T,i) (T).TO[(i)].meja
 
 boolean SearchMeja(TabOrd T, int Meja);
 /*Mengembalikan True jika meja sudah diisi*/
@@ -41,7 +42,7 @@ IdxType SearchOrd (TabOrd T, Kata X);
 void DelOrd(TabOrd *T, IdxType idx);
 /*Delete Elmt(T, idx), dan menjaga array TabOrd tetap kontigu*/
 
-void order(player p,TabOrd *T, MATRIKS M, Kata * arr_makanan);
+void order(player p,TabOrd *T, MATRIKS M, TabMenu TM);
 /*matriks itu buat
 //Variables
 //Stack ord adalah stack yang berisi orderan

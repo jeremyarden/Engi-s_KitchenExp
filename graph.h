@@ -44,4 +44,6 @@ adrNode SearchNode(Graph G, int X);
 
 adrSuccNode SearchEdge(Graph G, int prec, int succ);
 
+void InitGraph(Graph *G);
+
 #endif

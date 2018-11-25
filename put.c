@@ -18,13 +18,13 @@ void Put(Stack *hand,Stack *food,BinTree *makanan,player p,MATRIKS kitchen,TabMe
     boolean cektree=false;
     int cnt=0;
     BinTree P;
-    balik(hand,save);   //stack dibalik dulu karena mengambilnya dari paling atas dalam tree  
-    if (CekNampanAda(p,kitchen)&&(!StackIsEmpty(*save))){   //cek nampan dan save apakah kosong
-        Pop(save,&temp);    //klo tidak kosong ambil nilai
+    balik(hand,&save);   //stack dibalik dulu karena mengambilnya dari paling atas dalam tree
+    if (CekNampanAda(p,kitchen)&&(!StackIsEmpty(save))){   //cek nampan dan save apakah kosong
+        Pop(&save,&temp);    //klo tidak kosong ambil nilai
         if (IsKataEq(temp.str, TM.TM[Akar(*makanan)].nama)){    //cek apakah sama
             P = *makanan;       
-            while (!StackIsEmpty(*save)&&(!cektree)){           //cari hingga salah bahan atau hingga stack save habis
-                Pop(save,&temp);
+            while (!StackIsEmpty(save)&&(!cektree)){           //cari hingga salah bahan atau hingga stack save habis
+                Pop(&save,&temp);
                 if (Right(P)!=Nil){         //cek bagian kanan
                     if (IsKataEq(TM.TM[Akar(Right(P))].nama, temp.str)){   
                         P=Right(P);
@@ -38,14 +38,14 @@ void Put(Stack *hand,Stack *food,BinTree *makanan,player p,MATRIKS kitchen,TabMe
                 }
             }
         }
-        if (!cektree&&StackIsEmpty(*save)){ //jika stack kosong dan belum menemukan salah bahan   
+        if (!cektree&&StackIsEmpty(save)){ //jika stack kosong dan belum menemukan salah bahan
             temp.str = TM.TM[Akar(Left(P))].nama;
             temp.harga = TM.TM[Akar(Left(P))].harga;
-            Push(food,save);
+            Push(food,temp);
         }else{
             printf("Masakan Gagal\n");
         }
-    }else if(StackIsEmpty(*save)){
+    }else if(StackIsEmpty(save)){
         printf("tidak ada bahan\n");
     }else{
         printf("Nampan Tidak ada\n");

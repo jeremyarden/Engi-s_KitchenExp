@@ -13,8 +13,11 @@
 #include <stdlib.h>
 #include "jam.h"
 #include "queue.h"
+#include "Place.h"
 #include "matriks.h"
 #include "arraymeja.h"
 #include "mapResto.h"
+
+void NextTik(JAM *J,int *day,TabMeja *Meja,Queue *antrean,int *kredibilitas,boolean *exit,player p,MATRIKS *room1,MATRIKS * room2,MATRIKS * room3);
 
 #endif /* nexttik_h */

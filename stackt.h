@@ -7,7 +7,7 @@
 
 #include "boolean.h"
 #include "mesinkata.h"
-#define Nil 0
+#define NilStack 0
 #define MaxEl 100
 /* Nil adalah stack dengan elemen kosong . */
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */
@@ -59,6 +59,6 @@ void Pop (Stack * S, infotypeStack* X);
 /* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
 void balik(Stack *s1,Stack *s2); 
 //balik stack s1 menjadi s2    
-void printStack(Stack S);
+void printStack(Stack *s);
 //menuliskan Stack S
 #endif

@@ -13,7 +13,7 @@ boolean SearchMeja(TabOrd T, int Meja)
     idx = 1; found = false;
     while(!found && idx<=Neff(T))
     {
-        found = Meja(T,idx) == Meja;
+        found = MejaOrd(T,idx) == Meja;
         idx++;
     }
     return found;
@@ -63,7 +63,7 @@ void DelOrd(TabOrd *T, IdxType idx){
     }
 }
 
-void order(player p,TabOrd *T, MATRIKS M, Kata * arr_makanan){
+void order(player p,TabOrd *T, MATRIKS M, TabMenu TM){
     //matriks itu buat
     //Variables
     //Stack ord adalah stack yang berisi orderan
@@ -90,9 +90,9 @@ void order(player p,TabOrd *T, MATRIKS M, Kata * arr_makanan){
             }
             else{
                 Neff(*T)++;
-                CopyKata(arr_makanan[rand_ord], &Food(*T,Neff(*T)));
+                CopyKata(TM.TM[rand_ord].nama, &Food(*T,Neff(*T)));
                 //ngisi Meja(T, Neff(T)) pake nomor meja
-                Meja(*T, Neff(*T)) = ordable;
+                MejaOrd(*T, Neff(*T)) = ordable;
             }
         }
         else
@@ -108,11 +108,11 @@ void printOrder(TabOrd Ord)
 // mengeprint order Ord
 {   
     int i,j;
-    for(i=1;i<Neff(Ord.Length);i++){
-        for(j=0;j<Food(T,i.Length);j++){
-            printf("%c",Food(T,i).TabKata[j]);
+    for(i=1;i<Neff(Ord);i++){
+        for(j=0;j<(Food(Ord,i)).Length;j++){
+            printf("%c",Food(Ord,i).TabKata[j]);
         }
-        printf("\n")
-        printf(%d,"\n",Meja(T,i));
+        printf("\n");
+        printf(",%d\n",MejaOrd(Ord,i));
     }
 }

@@ -1,15 +1,9 @@
-#include <stdio.h>
-#include "boolean.h"
-#include "arraymeja.h"
-#include "matriks.h"
-#include "map.h"
-#include "stackt.c"
-#include "order.c"
-#include <stdlib.h>
+#include "give.h"
+
 boolean ceksekitar(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3);
-int mejaKe(p,room1,room2,room3);
-void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1,MATRIKS *room2,MATRIKS *room3){ //T isinya nama makanan,harga
-	infotype temp,sampah;
+int mejaKe(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3);
+void Give(Stack *food,TabOrd *order,GameStatus * G,player p,TabMeja *TM,MATRIKS *room1,MATRIKS *room2,MATRIKS *room3){ //T isinya nama makanan,harga
+	infotypeStack temp,sampah;
 	IdxType idx;
 	int price,table;
 	if (ceksekitar(p,*room1,*room2,*room3)){	
@@ -27,7 +21,7 @@ void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1
 		//set info queue order
 			idx=SearchOrd(*order,temp.str);	//cari indeks yang akan dihapus di order
 			price=temp.harga;	//harga
-			uang+=price;		//uang bertambah
+			 (*G).Money +=price;		//uang bertambah
 			//hapus orderan
 			DelOrd(order,idx);		//menghapus order indeks ke idx
 		}else{
@@ -49,22 +43,22 @@ boolean ceksekitar(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3){
 //mengecek kondisi sekitar apakah sudah disamping pelanggan atau tidak
 //true jika disebelah pelanggan
 	if (Room(p)==1){
-		return ((room1[X(p)][Y(p)]>='a')&&(room1[X(p)][Y(p)]<='j'));
+		return ((Elmt(room1, X(p), Y(p))>='a')&&Elmt(room1, X(p), Y(p))<='j');
 	}else if (Room(p)==2){
-		return (room2[X(p)][Y(p)]>='a'&&room2[X(p)][Y(p)]<='j');
+		return (Elmt(room2, X(p), Y(p))>='a'&&Elmt(room2, X(p), Y(p))<='j');
 	}else if (Room(p)==3){
-		return (room3[X(p)][Y(p)]>='a'&&room3[X(p)][Y(p)]<='j');
+		return (Elmt(room3, X(p), Y(p))>='a'&&Elmt(room3, X(p), Y(p))<='j');
 	}else{
 		return false;
 	}
 }
-int mejaKe(p,room1,room2,room3){
+int mejaKe(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3){
 //menggembalikan integer yang berupa angka meja pelanggan disebelah
 	if (Room(p)==1){
-		return room1[X(p)][Y(p)]-'a'+1;
+		return Elmt(room1, X(p), Y(p))-'a'+1;
 	}else if (Room(p)==2){
-		return room2[X(p)][Y(p)]-'a'+1;
-	}else if (Room(p)==3){
-		return room3[X(p)][Y(p)]-'a'+1;
+		return Elmt(room2, X(p), Y(p))-'a'+1;
+	}else {
+		return Elmt(room3, X(p), Y(p))-'a'+1;
 	}
 }

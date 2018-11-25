@@ -10,13 +10,13 @@ void StackCreateEmpty (Stack *S)
 /* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
 /* Ciri stack kosong : TOP bernilai Nil */
 {
-    Top(*S)=Nil;
+    Top(*S)=NilStack;
 }
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
 boolean StackIsEmpty (Stack S)
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
 {
-    return(Top(S)==Nil);
+    return(Top(S)==NilStack);
 }
 boolean StackIsFull (Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
@@ -42,10 +42,10 @@ void Pop (Stack * S, infotypeStack* X)
     Top(*S)-=1;
 }
 void balik(Stack *s1,Stack *s2){ //balik stack s1 ke s2
-	infotype tmp;
+	infotypeStack tmp;
 	
-	CreateEmpty(s2);
-	while (!IsEmpty(*s1)){
+	StackCreateEmpty(s2);
+	while (!StackIsEmpty(*s1)){
 		Pop(s1,&tmp);
 		Push(s2,tmp);
 	}
@@ -54,14 +54,14 @@ void printStack(Stack *s){
 	Stack stmp;
 	int i;
 	infotypeStack tmp;
-	CreateEmpty(&stmp);
-	while (!IsEmpty(*s)){
+	StackCreateEmpty(&stmp);
+	while (!StackIsEmpty(*s)){
 		Pop(s,&tmp);
-		for(i=0;i<tmp.Length;i++){
-			printf("%c",InfoTop(*s).TabKata[i]);
+		for(i=1;i<=tmp.str.Length;i++){
+			printf("%c",InfoTop(*s).str.TabKata[i]);
 		}
 		printf("\n");
 		Push(&stmp,tmp);
 	}	
-	balik(&stmp,s)
+    balik(&stmp,s);
 }
