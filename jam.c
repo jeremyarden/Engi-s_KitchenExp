@@ -41,41 +41,6 @@ JAM MakeJAM (int HH, int MM, int SS)
     return J;
 }
 
-/* ***************************************************************** */
-/* KELOMPOK BACA/TULIS                                               */
-/* ***************************************************************** */
-void BacaJAM (JAM *J)
-/* I.S. : J tidak terdefinisi */
-/* F.S. : J terdefinisi dan merupakan jam yang valid */
-/* Proses : mengulangi membaca komponen HH, MM, SS sehingga membentuk J */
-/* yang valid. Tidak mungkin menghasilkan J yang tidak valid. */
-/* Pembacaan dilakukan dengan mengetikkan komponen HH, MM, SS
- dalam satu baris, masing-masing dipisahkan 1 spasi, diakhiri enter. */
-/* Jika JAM tidak valid maka diberikan pesan: "Jam tidak valid", dan pembacaan
- diulangi hingga didapatkan jam yang valid. */
-/* Contoh:
- 60 3 4
- Jam tidak valid
- 1 3 4
- --> akan terbentuk JAM <1,3,4> */
-{
-    /* KAMUS LOKAL */
-    int H, M, S;
-    boolean valid;
-    /* ALGORITMA */
-    valid = false;
-    scanf("%d %d %d", &H, &M, &S);
-    
-    while (!IsJAMValid(H, M, S))
-    {
-        printf("Jam tidak valid\n");
-        printf("Masukan jam : ");
-        scanf("%d %d %d", &H, &M, &S);
-    }
-    
-    *J = MakeJAM(H, M, S);
-}
-
 void TulisJAM (JAM J)
 /* I.S. : J sembarang */
 /* F.S. :   Nilai J ditulis dg format HH:MM:SS */
@@ -130,77 +95,10 @@ JAM DetikToJAM (long N)
     
     return J;
 }
-
-/* ***************************************************************** */
-/* KELOMPOK OPERASI TERHADAP TYPE                                    */
-/* ***************************************************************** */
-/* *** Kelompok Operator Relational *** */
-boolean JEQ (JAM J1, JAM J2)
-/* Mengirimkan true jika J1=J2, false jika tidak */
-{
-    return ((Hour(J1) == Hour(J2) && (Minute(J1) == Minute(J2)) && (Second(J1) == Second(J2))));
-}
-boolean JNEQ (JAM J1, JAM J2)
-/* Mengirimkan true jika J1 tidak sama dengan J2 */
-{
-    return ((Hour(J1) != Hour(J2) || (Minute(J1) != Minute(J2)) || (Second(J1) != Second(J2))));
-}
-boolean JLT (JAM J1, JAM J2)
-/* Mengirimkan true jika J1<J2, false jika tidak */
-{
-    return (JAMToDetik(J1) < JAMToDetik(J2));
-}
-boolean JGT (JAM J1, JAM J2)
-/* Mengirimkan true jika J1>J2, false jika tidak */
-{
-    return (JAMToDetik(J1) > JAMToDetik(J2));
-}
-
-/* *** Operator aritmatika JAM *** */
 JAM NextDetik (JAM J)
 /* Mengirim 1 detik setelah J dalam bentuk JAM */
 {
     J = DetikToJAM(JAMToDetik(J) + 1);
     
     return J;
-}
-JAM NextNDetik (JAM J, int N)
-/* Mengirim N detik setelah J dalam bentuk JAM */
-{
-    J = DetikToJAM(JAMToDetik(J) + N);
-    
-    return J;
-}
-JAM PrevDetik (JAM J)
-/* Mengirim 1 detik sebelum J dalam bentuk JAM */
-{
-    J = DetikToJAM(JAMToDetik(J) - 1);
-    
-    return J;
-}
-JAM PrevNDetik (JAM J, int N)
-/* Mengirim N detik sebelum J dalam bentuk JAM */
-{
-    J = DetikToJAM(JAMToDetik(J) - N);
-    
-    return J;
-}
-
-/* *** Kelompok Operator Aritmetika *** */
-long Durasi (JAM JAw, JAM JAkh)
-/* Mengirim JAkh-JAw dlm Detik, dengan kalkulasi */
-/* Jika JAw > JAkh, maka JAkh adalah 1 hari setelah JAw */
-{
-    long Drsi;
-    
-    if (JGT(JAw, JAkh))
-    {
-        Drsi = (JAMToDetik(JAkh) + 86400) - JAMToDetik(JAw);
-    }
-    else
-    {
-        Drsi = JAMToDetik(JAkh) - JAMToDetik(JAw);
-    }
-    
-    return Drsi;
 }
