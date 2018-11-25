@@ -64,3 +64,4 @@ void printStack(Stack *s){
 		Push(&stmp,tmp);
 	}	
 	balik(&stmp,s)
+}
