@@ -6,8 +6,6 @@
 #include "stackt.c"
 #include "order.c"
 #include <stdlib.h>
-// bikin cmp
-// Perbaiki search tabOrd, belum hapus orderan, ceksekitar belum sempurrna v
 boolean ceksekitar(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3);
 void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1,MATRIKS *room2,MATRIKS *room3){ //T isinya nama makanan,harga
 	infotype temp,sampah;
@@ -47,11 +45,11 @@ void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1
 }
 boolean ceksekitar(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3){
 	if (p.room==1){
-		return ((room1[p.px][p.py]>='a')&&(room1[p.px][p.py]<='j'));
+		return ((room1[X(p)][Y(p)]>='a')&&(room1[X(p)][Y(p)]<='j'));
 	}else if (p.room==2){
-		return (room2[p.px][p.py]>='a'&&room2[p.px][p.py]<='j');
+		return (room2[X(p)][Y(p)]>='a'&&room2[X(p)][Y(p)]<='j');
 	}else if (p.room==3){
-		return (room3[p.px][p.py]>='a'&&room3[p.px][p.py]<='j');
+		return (room3[X(p)][Y(p)]>='a'&&room3[X(p)][Y(p)]<='j');
 	}else{
 		return false;
 	}
