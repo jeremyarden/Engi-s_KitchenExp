@@ -41,3 +41,12 @@ void Pop (Stack * S, infotypeStack* X)
     *X=InfoTop(*S);
     Top(*S)-=1;
 }
+void balik(Stack *s1,Stack *s2){ //balik stack s1 ke s2
+	infotype tmp;
+	
+	CreateEmpty(s2);
+	while (!IsEmpty(*s1)){
+		Pop(s1,&tmp);
+		Push(s2,tmp);
+	}
+}
