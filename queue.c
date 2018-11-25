@@ -7,7 +7,7 @@
 boolean QueueIsEmpty (Queue Q)
 /* Mengirim true jika Q kosong: lihat definisi di atas */
 {
-    return ((Head(Q)==Nil)&&(Tail(Q)==Nil));
+    return ((Head(Q)==NilQueue)&&(Tail(Q)==NilQueue));
 }
 boolean QueueIsFull (Queue Q)
 /* Mengirim true jika tabel penampung elemen Q sudah penuh */
@@ -37,12 +37,12 @@ void QueueCreateEmpty (Queue * Q, int Max)
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 {
     (*Q).T=(infoqueue *) malloc ((Max+1)*sizeof(infoqueue));
-    if ((*Q).T != Nil ){
+    if ((*Q).T != NilQueue ){
         MaxEl(*Q)=Max;
-        Head(*Q)=Nil;
-        Tail(*Q)=Nil;
+        Head(*Q)=NilQueue;
+        Tail(*Q)=NilQueue;
     }else{
-        MaxEl(*Q)=Nil;
+        MaxEl(*Q)=NilQueue;
     }
 }
 /* *** Destruktor *** */
@@ -51,7 +51,7 @@ void QueueDeAlokasi(Queue * Q)
 /* I.S. Q pernah dialokasi */
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 {
-    MaxEl(*Q)=Nil;
+    MaxEl(*Q)=NilQueue;
     free((*Q).T);
 }
 /* *** Primitif Add/Delete *** */
@@ -74,8 +74,8 @@ void Del (Queue * Q, infoqueue * X)
 {
     if (Tail(*Q)==Head(*Q)){
         *X=InfoHead(*Q);
-        Head(*Q)=Nil;
-        Tail(*Q)=Nil;
+        Head(*Q)=NilQueue;
+        Tail(*Q)=NilQueue;
     }else{
         *X=InfoHead(*Q);
         Head(*Q)=(Head(*Q)%MaxEl(*Q))+1;
@@ -94,8 +94,8 @@ void Deli (Queue * Q,int i, infoqueue * X){
     int a,until;
     if (Tail(*Q)==Head(*Q)){
         *X=InfoHead(*Q);
-        Head(*Q)=Nil;
-        Tail(*Q)=Nil;
+        Head(*Q)=NilQueue;
+        Tail(*Q)=NilQueue;
     }else{
         if (i>Tail(*Q)){
             until=Tail(*Q)+MaxEl(*Q);

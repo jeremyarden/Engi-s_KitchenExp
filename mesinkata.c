@@ -1,7 +1,6 @@
 /* File: mesinkata.c */
 /* Definisi Mesin Kata: Model Akuisisi Versi I */
-#include "boolean.h"
-#include <stdio.h>
+
 #include "mesinkata.h"
 
 Kata CKata;

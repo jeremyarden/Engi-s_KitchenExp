@@ -1,15 +1,20 @@
 #include <stdio.h>
+#include "boolean.h"
+#include "arraymeja.h"
+#include "matriks.h"
+#include "map.h"
+#include "stackt.c"
+#include "order.c"
 #include <stdlib.h>
-// bikin cmp
-// Perbaiki search tabOrd, belum hapus orderan, ceksekitar belum sempurrna
-void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1,*room2,*room3){ //T isinya nama makanan,harga
+boolean ceksekitar(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3);
+void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1,MATRIKS *room2,MATRIKS *room3){ //T isinya nama makanan,harga
 	infotype temp,sampah;
 	IdxType idx;
 	int price;
-	if (ceksekitar(p)){
+	if (ceksekitar(p,*room1,*room2,*room3)){
 		Pop(food,&temp);
 		//search masih belum bener
-		if (Search2(*order,temp.str)!=-999){
+		if (SearchOrd(*order,temp.str)!=-999){
 			if (p.room==1){
 				kosongmeja(TM,room1,Search2(*order,temp.str));
 			}else if (p.room==2){
@@ -18,11 +23,11 @@ void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1
 				kosongmeja(TM,room3,Search2(*order,temp.str));
 			}		
 		//set info queue order
-		//	idx=Search2 (T,temp);
+			idx=SearchOrd(*order,temp.str);
 			price=temp.harga;
 			uang+=price;
 			//hapus orderan
-			//Del(order,);
+			Del(order,idx);
 		}else{
 			Push(food,temp);
 			printf("Pesanan salah kirim\n");
@@ -38,13 +43,13 @@ void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1
 		TulisMATRIKS(*room3);
 	}
 }
-ceksekitar(p){
+boolean ceksekitar(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3){
 	if (p.room==1){
-		return (room1[p.x][p.y]>='a'&&room1[p.x][p.y]<='j');
+		return ((room1[X(p)][Y(p)]>='a')&&(room1[X(p)][Y(p)]<='j'));
 	}else if (p.room==2){
-		return (room2[p.x][p.y]>='a'&&room2[p.x][p.y]<='j');
+		return (room2[X(p)][Y(p)]>='a'&&room2[X(p)][Y(p)]<='j');
 	}else if (p.room==3){
-		return (room3[p.x][p.y]>='a'&&room3[p.x][p.y]<='j');
+		return (room3[X(p)][Y(p)]>='a'&&room3[X(p)][Y(p)]<='j');
 	}else{
 		return false;
 	}

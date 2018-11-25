@@ -12,7 +12,6 @@
 //random belum coba
 void mengantri(Queue *Q){
     infoqueue X;
-    time_t t;
     int i;
     if (rand()%20==7){    //merandom waktu bertambahnya antrian dengan peluang 1/20
         i=rand()%2;
@@ -22,7 +21,7 @@ void mengantri(Queue *Q){
     }
 }
 void Place(Queue *Q,TabMeja *T,MATRIKS *M){
-    infoqueue X,Sampah;
+    infoqueue Sampah;
     time_t t;
     int i,dua=-1,empat=-1,until;
     boolean found=false,sudah;

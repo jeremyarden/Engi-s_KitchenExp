@@ -166,10 +166,9 @@ void moveplayer(player *P, MATRIKS room, char cmd, Graph G, adrNode *currLoc)
 
 void NearestCust(player p, MATRIKS room, int *ordable){
     
-    *ordable = Elmt(room, p.py, p.px) - '`';
-    
-    if((*ordable > 9) || (*ordable < 0)){
-        *ordable = -999;
+    *ordable = -999;
+    if(Elmt(room, X(p), Y(p)) >= 'a' && Elmt(room, X(p), Y(p)) <= 'j'){
+        *ordable = Elmt(room, X(p), Y(p)) - '`';
     }
 }
 
@@ -255,4 +254,3 @@ boolean AvailOrder(player P, MATRIKS room)
         return false;
     }
 }
-
