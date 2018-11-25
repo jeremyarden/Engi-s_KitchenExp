@@ -50,3 +50,17 @@ void balik(Stack *s1,Stack *s2){ //balik stack s1 ke s2
 		Push(s2,tmp);
 	}
 }
+void printStack(Stack *s){
+	Stack stmp;
+	int i;
+	infotypeStack tmp;
+	CreateEmpty(&stmp);
+	while (!IsEmpty(*s)){
+		Pop(s,&tmp);
+		for(i=0;i<tmp.Length;i++){
+			printf("%c");
+		}
+		printf("\n");
+		Push(&stmp,tmp);
+	}	
+	balik(&stmp,s)
