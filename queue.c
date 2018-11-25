@@ -20,7 +20,7 @@ boolean QueueIsFull (Queue Q)
 int QueueNBElmt (Queue Q)
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika Q kosong. */
 {
-	if (IsEmpty(Q)){
+	if (QueueIsEmpty(Q)){
 		return 0;
 	} else{
 		if (Tail(Q)>=Head(Q)){
@@ -38,7 +38,7 @@ void QueueCreateEmpty (Queue * Q, int Max)
 /* atau : jika alokasi gagal, Q kosong dg MaxEl=0 */
 /* Proses : Melakukan alokasi, membuat sebuah Q kosong */
 {
-	(*Q).T=(infotype *) malloc ((Max+1)*sizeof(infotype));
+	(*Q).T=(infoqueue *) malloc ((Max+1)*sizeof(infoqueue));
 	if ((*Q).T != Nil ){
 		MaxEl(*Q)=Max;
 		Head(*Q)=Nil;
@@ -57,7 +57,7 @@ void QueueDeAlokasi(Queue * Q)
 	free((*Q).T);
 }
 /* *** Primitif Add/Delete *** */
-void Add (Queue * Q, infotype X)
+void Add (Queue * Q, infoqueue X)
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
@@ -68,7 +68,7 @@ void Add (Queue * Q, infotype X)
 	Tail(*Q)=(Tail(*Q)%MaxEl(*Q))+1;
 	InfoTail(*Q)=X;
 }
-void Del (Queue * Q, infotype * X)
+void Del (Queue * Q, infoqueue * X)
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
@@ -82,4 +82,34 @@ void Del (Queue * Q, infotype * X)
 		*X=InfoHead(*Q);
 		Head(*Q)=(Head(*Q)%MaxEl(*Q))+1;
 	}	
+}
+void pindah(Queue *Q,int x,int y){
+	int tmp;
+	tmp=InfoOrang(*Q,x);
+	InfoOrang(*Q,x)=InfoOrang(*Q,y);
+	InfoOrang(*Q,y)=tmp;
+	tmp=InfoKesabaran(*Q,x);
+	InfoKesabaran(*Q,x)=InfoKesabaran(*Q,y);
+	InfoKesabaran(*Q,y)=tmp;
+}
+void Deli (Queue * Q,int i, infoqueue * X){
+	int a,until;
+	if (Tail(*Q)==Head(*Q)){
+		*X=InfoHead(*Q);
+		Head(*Q)=Nil;
+		Tail(*Q)=Nil;
+	}else{
+		if (i>Tail(*Q)){
+			until=Tail(*Q)+MaxEl(*Q);
+		}else{
+			until=Tail(*Q);
+		}
+		for (a=i+1;i<=until;i++){
+			pindah(Q,(a-1)%MaxEl(*Q)+1,a%MaxEl(*Q)+1);
+		}
+		Tail(*Q)=Tail(*Q)-1;
+		if (Tail(*Q)<1){
+			Tail(*Q)+=MaxEl(*Q);
+		}
+	}
 }

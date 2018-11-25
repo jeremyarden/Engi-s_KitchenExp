@@ -13,11 +13,11 @@
 /* Definisi elemen dan address */
 typedef struct	{ int orang;
 				  int kesabaran;
-				} infotype;
+				} infoqueue;
 typedef int address;   /* indeks tabel */
 /* Contoh deklarasi variabel bertype Queue : */
 /* Versi I : tabel dinamik, Head dan Tail eksplisit, ukuran disimpan */
-typedef struct { infotype * T;   /* tabel penyimpan elemen */
+typedef struct { infoqueue * T;   /* tabel penyimpan elemen */
                  address HEAD;  /* alamat penghapusan */
                  address TAIL;  /* alamat penambahan */
                  int MaxEl;     /* Max elemen queue */                 
@@ -30,6 +30,8 @@ typedef struct { infotype * T;   /* tabel penyimpan elemen */
 #define Head(Q) (Q).HEAD
 #define Tail(Q) (Q).TAIL
 #define InfoHead(Q) (Q).T[(Q).HEAD]
+#define InfoOrang(Q,i) (Q).T[i].orang
+#define InfoKesabaran(Q,i) (Q).T[i].kesabaran
 #define InfoTail(Q) (Q).T[(Q).TAIL]
 #define MaxEl(Q) (Q).MaxEl
 
@@ -57,14 +59,17 @@ void QueueDeAlokasi(Queue * Q);
 /* F.S. Q menjadi tidak terdefinisi lagi, MaxEl(Q) diset 0 */
 
 /* *** Primitif Add/Delete *** */
-void Add (Queue * Q, infotype X);
+void Add (Queue * Q, infoqueue X);
 /* Proses: Menambahkan X pada Q dengan aturan FIFO */
 /* I.S. Q mungkin kosong, tabel penampung elemen Q TIDAK penuh */
 /* F.S. X menjadi TAIL yang baru, TAIL "maju" dengan mekanisme circular buffer */
-void Del (Queue * Q, infotype * X);
+void Del (Queue * Q, infoqueue * X);
 /* Proses: Menghapus X pada Q dengan aturan FIFO */
 /* I.S. Q tidak mungkin kosong */
 /* F.S. X = nilai elemen HEAD pd I.S., HEAD "maju" dengan mekanisme circular buffer; 
         Q mungkin kosong */
-
+void pindah(Queue *Q,int x,int y);
+// Pindah indeks queue ke x ke y
+void Deli (Queue * Q,int i, infoqueue * X);
+// delete indeks ke i
 #endif
