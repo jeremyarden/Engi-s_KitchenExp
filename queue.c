@@ -111,3 +111,14 @@ void Deli (Queue * Q,int i, infoqueue * X){
         }
     }
 }
+void printQueue(Queue antrian){
+    Queue tmp;
+    infoqueue X;
+    QueueCreateEmpty(&tmp,999);
+    CopyQueue(antrian,tmp);
+    printf("Antrian pelanggan\n")
+    while (!QueueIsEmpty(tmp)){
+        Del(&tmp,&X);
+        printf("%d\n",InfoHead(tmp).orang);
+    }
+}
