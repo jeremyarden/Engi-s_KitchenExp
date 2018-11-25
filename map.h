@@ -17,11 +17,14 @@ typedef struct{
     int room;//ngasihtau player ada di ruangan mana
 }player;
 
+#define X(P) P.px
+#define Y(P) P.py
+#define Room(P) P.room
+
 void START(FILE *fp);
 void ADV();
 void FileToMap(FILE *fp, MATRIKS *room);
 void InitMap(MATRIKS *room1, MATRIKS *room2, MATRIKS *room3, MATRIKS *kitchen);
-void moveplayer(player *p, MATRIKS room, char cmd);
+void moveplayer(player *p, MATRIKS *room, char cmd);
 void NearestCust(player p, MATRIKS room, int *ordable);
-
 #endif

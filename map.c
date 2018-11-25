@@ -116,7 +116,83 @@ void NearestCust(player p, MATRIKS room, int *ordable){
     
     *ordable = Elmt(room, p.py, p.px) - '`';
 
-    if((*ordable > 9) || (*ordable < 1)){
+    if((*ordable > 9) || (*ordable < 0)){
         *ordable = -999;
     }
+}
+
+void ChangeRoom(Graph G, adrNode *currLoc, player *P)
+{
+    adrSuccNode P;
+    
+    if (X(*P) == 5 && Y(*P) == 9 && Room(*P) == 1)
+    {
+        X(*P) = 2;
+        Y(*P) = 1;
+        Room(*P) = 2;
+        P = SearchEdge(G, 1, 2);
+        *currLoc = Succ(P);  
+    }
+    else if (X(*P) == 9 && Y(*P) == 5 && Room(*P) == 2)
+    {
+        X(*P) = 1;
+        Y(*P) = 5;
+        Room(*P) = 3;
+        P = SearchEdge(G, 2, 3);
+        *currLoc = Succ(P);
+    }
+    else if (X(*P) == 2 && Y(*P) == 0 && Room(*P) == 3)
+    {
+        X(*P) = 5;
+        Y(*P) = 8;
+        Room(*P) = 4;
+        P = SearchEdge(G, 3, 4);
+        *currLoc = Succ(P);
+    }
+    else if (X(*P) == 0 && Y(*P) == 5 && Room(*P) == 4)
+    {
+        X(*P) = 8;
+        Y(*P) = 5;
+        Room(*P) = 1;
+        P = SearchEdge(G, 4, 1);
+        *currLoc = Succ(P);
+    }
+    else if (X(*P) == 9 && Y(*P) == 5 && Room(*P) == 1)
+    {
+        X(*P) = 1;
+        Y(*P) = 5;
+        Room(*P) = 4;
+        P = SearchEdge(G, 1, 4);
+        *currLoc = Succ(P);
+    }
+    else if (X(*P) == 5 && Y(*P) == 9 && Room(*P) == 4)
+    {
+        X(*P) = 2;
+        Y(*P) = 1;
+        Room(*P) = 3;
+        P = SearchEdge(G, 4, 3);
+        *currLoc = Succ(P);
+    }
+    else if (X(*P) == 0 && Y(*P) == 5 && Room(*P) == 3)
+    {
+        X(*P) = 8;
+        Y(*P) = 5;
+        Room(*P) = 3;
+        P = SearchEdge(G, 3, 2);
+        *currLoc = Succ(P);
+    }
+    else if (X(*P) == 2 && Y(*P) == 0 && Room(*P) == 2)
+    {
+        X(*P) = 5;
+        Y(*P) = 8;
+        Room(*P) = 1;
+        P = SearchEdge(G, 2, 1);
+        *currLoc = Succ(P);
+    }
+
+}
+
+void PrintMap(player P)
+{
+
 }
