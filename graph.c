@@ -88,3 +88,26 @@ adrSuccNode SearchEdge(Graph G, int prec, int succ)
   }
   return P;
 }
+
+void InitGraph(Graph *G)
+{
+  int i;
+  adrNode P;
+
+  for (i = 4; i >= 1; i--)
+  {
+    InsertNode(G, i, &P);
+  }
+
+  InsertEdge(G, 1, 2);
+  InsertEdge(G, 1, 4);
+  
+  InsertEdge(G, 2, 1);
+  InsertEdge(G, 2, 3);
+
+  InsertEdge(G, 3, 2);
+  InsertEdge(G, 3, 4);
+  
+  InsertEdge(G, 4, 1);
+  InsertEdge(G, 4, 3);
+}
