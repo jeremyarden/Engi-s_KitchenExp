@@ -35,7 +35,7 @@ void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1
 			printf("Pesanan salah kirim\n");
 		}
 	}else{
-		printf("Posisi salah\n");
+		printf("Posisi salah\n");	//posisi salah
 	}
 	if (Room(p)==1){
 		TulisMATRIKS(*room1);
@@ -43,9 +43,11 @@ void Give(Stack *food,TabOrd *order,int uang,player p,TabMeja *TM,MATRIKS *room1
 		TulisMATRIKS(*room2);
 	}else if (Room(p)==3){
 		TulisMATRIKS(*room3);
-	}
+	}	//menulis matriks
 }
 boolean ceksekitar(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3){
+//mengecek kondisi sekitar apakah sudah disamping pelanggan atau tidak
+//true jika disebelah pelanggan
 	if (Room(p)==1){
 		return ((room1[X(p)][Y(p)]>='a')&&(room1[X(p)][Y(p)]<='j'));
 	}else if (Room(p)==2){
@@ -57,6 +59,7 @@ boolean ceksekitar(player p,MATRIKS room1,MATRIKS room2,MATRIKS room3){
 	}
 }
 int mejaKe(p,room1,room2,room3){
+//menggembalikan integer yang berupa angka meja pelanggan disebelah
 	if (Room(p)==1){
 		return room1[X(p)][Y(p)]-'a'+1;
 	}else if (Room(p)==2){
