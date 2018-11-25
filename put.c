@@ -14,15 +14,17 @@
 void Put(Stack *hand,Stack *food,BinTree *makanan,player p,MATRIKS kitchen,TabMenu TM)
 {
     infotypeStack temp;
+    Stack save;
     boolean cektree=false;
     int cnt=0;
     BinTree P;
-    if (CekNampanAda(p,kitchen)&&(!StackIsEmpty(*hand))){
-        Pop(hand,&temp);
+    balik(hand,save);  
+    if (CekNampanAda(p,kitchen)&&(!StackIsEmpty(*save))){
+        Pop(save,&temp);
         if (IsKataEq(temp.str, TM.TM[Akar(*makanan)].nama)){
             P = *makanan;
-            while (!StackIsEmpty(*hand)&&(!cektree)){
-                Pop(hand,&temp);
+            while (!StackIsEmpty(*save)&&(!cektree)){
+                Pop(save,&temp);
                 if (Right(P)!=Nil){
                     if (IsKataEq(TM.TM[Akar(Right(P))].nama, temp.str)){
                         P=Right(P);
@@ -36,15 +38,15 @@ void Put(Stack *hand,Stack *food,BinTree *makanan,player p,MATRIKS kitchen,TabMe
                 }
             }
         }
-        if (!cektree&&StackIsEmpty(*hand)){
+        if (!cektree&&StackIsEmpty(*save)){
             P = *makanan;
             temp.str = TM.TM[Akar(Left(P))].nama;
             temp.harga = TM.TM[Akar(Left(P))].harga;
-            Push(food,temp);
+            Push(food,save);
         }else{
             printf("Masakan Gagal\n");
         }
-    }else if(StackIsEmpty(*hand)){
+    }else if(StackIsEmpty(*save)){
         printf("tidak ada bahan\n");
     }else{
         printf("Nampan Tidak ada\n");
