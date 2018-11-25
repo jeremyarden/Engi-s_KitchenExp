@@ -9,7 +9,7 @@
 #include <stdlib.h>
 #include "boolean.h"
 
-#define Nil 0
+#define NilQueue 0
 /* Konstanta untuk mendefinisikan address tak terdefinisi */
 
 /* Definisi elemen dan address */

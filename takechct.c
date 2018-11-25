@@ -1,61 +1,78 @@
 #include "takechct.h"
 
 
-void Take (Stack *Hand, ElType M)
+void Take (Stack *Hand, ElType M,TabMenu TM)
 {
     /* Kamus */
     infotypeStack benda;
     /* Algoritma */
     if (M=='A') {
-       // benda="Piring";
+        CopyKata(TM.TM[1].nama, &benda.str);
+        benda.harga = TM.TM[1].harga;
     }
     else if (M=='B') {
-        //benda="Sendok";
+        CopyKata(TM.TM[2].nama, &benda.str);
+        benda.harga = TM.TM[2].harga;
     }
     else if (M=='C') {
-        //benda="Garpu";
+        CopyKata(TM.TM[3].nama, &benda.str);
+        benda.harga = TM.TM[3].harga;
     }
     else if (M=='D') {
-        //benda="Es Krim";
+        CopyKata(TM.TM[4].nama, &benda.str);
+        benda.harga = TM.TM[4].harga;
     }
     else if (M=='E') {
-        //benda="Nasi";
+        CopyKata(TM.TM[5].nama, &benda.str);
+        benda.harga = TM.TM[5].harga;
     }
     else if (M=='F') {
-        //benda="Roti";
+        CopyKata(TM.TM[6].nama, &benda.str);
+        benda.harga = TM.TM[6].harga;
     }
     else if (M=='G') {
-        //benda="Spaghetti";
+        CopyKata(TM.TM[7].nama, &benda.str);
+        benda.harga = TM.TM[7].harga;
     }
     else if (M=='H') {
-        //benda="Pisang";
+        CopyKata(TM.TM[8].nama, &benda.str);
+        benda.harga = TM.TM[8].harga;
     }
     else if (M=='I') {
-        //benda="Stroberi";
+        CopyKata(TM.TM[9].nama, &benda.str);
+        benda.harga = TM.TM[9].harga;
     }
     else if (M=='J') {
-        //benda="Stroberi";
+        CopyKata(TM.TM[9].nama, &benda.str);
+        benda.harga = TM.TM[9].harga;
     }
     else if (M=='K') {
-        //benda="Telur";
+        CopyKata(TM.TM[10].nama, &benda.str);
+        benda.harga = TM.TM[10].harga;
     }
     else if (M=='L') {
-        //benda="Ayam Goreng";
+        CopyKata(TM.TM[11].nama, &benda.str);
+        benda.harga = TM.TM[11].harga;
     }
     else if (M=='M') {
-        //benda="Patty";
+        CopyKata(TM.TM[12].nama, &benda.str);
+        benda.harga = TM.TM[12].harga;
     }
     else if (M=='N') {
-        //benda="Sosis";
+        CopyKata(TM.TM[13].nama, &benda.str);
+        benda.harga = TM.TM[13].harga;
     }
     else if (M=='O') {
-        //benda="Bolognese";
+        CopyKata(TM.TM[14].nama, &benda.str);
+        benda.harga = TM.TM[14].harga;
     }
     else if (M=='P') {
-        //benda="Carbonara";
+        CopyKata(TM.TM[15].nama, &benda.str);
+        benda.harga = TM.TM[15].harga;
     }
     else if (M=='Q') {
-        //benda="Keju";
+        CopyKata(TM.TM[22].nama, &benda.str);
+        benda.harga = TM.TM[22].harga;
     }
     Push(Hand, benda);
 }

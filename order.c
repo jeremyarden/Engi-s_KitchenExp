@@ -48,7 +48,7 @@ void DelOrd(TabOrd *T, IdxType idx){
     }
 }
 
-/*void order(TabOrd *T, MATRIKS M, Kata * arr_makanan){
+void order(TabOrd *T, MATRIKS M, Kata * arr_makanan){
     //matriks itu buat
     //Variables
     //Stack ord adalah stack yang berisi orderan
@@ -59,8 +59,8 @@ void DelOrd(TabOrd *T, IdxType idx){
     srand((unsigned) time(&t)); // buat random 
     //Algo
     //Cek apakah lu bisa ngambil order sekarang
-    if((/*posisi player berada di penanda*///) && (/*meja bisa diambil orderannya*/)){
-/*
+    if((/*posisi player berada di penanda*/) && (/*meja bisa diambil orderannya*/)){
+
         rand_ord = rand();//take order
         while((rand_ord < 0) || (rand_ord > 7)){
             rand_ord = rand();
@@ -82,4 +82,4 @@ void DelOrd(TabOrd *T, IdxType idx){
     else{
         printf("Anda tidak bisa mengambil order disini");
     }
-}*/
+}
