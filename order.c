@@ -104,3 +104,15 @@ void order(player p,TabOrd *T, MATRIKS M, Kata * arr_makanan){
         printf("Anda tidak bisa mengambil order disini\n");
     }
 }
+void printOrder(TabOrd Ord)
+// mengeprint order Ord
+{   
+    int i,j;
+    for(i=1;i<Neff(Ord.Length);i++){
+        for(j=0;j<Food(T,i.Length);j++){
+            printf("%c",Food(T,i).TabKata[j]);
+        }
+        printf("\n")
+        printf(%d,"\n",Meja(T,i));
+    }
+}
