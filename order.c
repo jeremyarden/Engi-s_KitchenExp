@@ -3,6 +3,21 @@
 //Harus bikin mesinkata coyy
 #include "order.h"
 
+boolean SearchMeja(TabOrd T, int Meja)
+/*Mengembalikan True jika meja sudah diisi*/
+{
+    /*Kamus*/
+    boolean found;
+    int idx;
+    /*Algoritma*/
+    idx = 1; found = false;
+    while(!found && idx<=Neff(T))
+    {
+        found = Meja(T,idx) == Meja;
+        idx++;
+    }
+    return found;
+}
 IdxType SearchOrd (TabOrd T, Kata X){
     /* Search apakah ada elemen tabel T yang bernilai X */
     /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = X */
@@ -60,26 +75,32 @@ void order(player p,TabOrd *T, MATRIKS M, Kata * arr_makanan){
     //Algo
     //Cek apakah lu bisa ngambil order sekarang
     NearestCust(p, M, &ordable);
-    if((ordable>=1) && (ordable<=9)){
-
-        rand_ord = rand();//take order
-        while((rand_ord < 0) || (rand_ord > 7)){
-            rand_ord = rand();
+    if((ordable>=1) && (ordable<=9))
+    {
+        if(!SearchMeja(*T, ordable))
+        {
+            rand_ord = rand();//take order
+            while((rand_ord < 0) || (rand_ord > 7))
+            {
+                rand_ord = rand();
+            }
+            //masukin order ke TabOrd
+            if(Neff(*T) == 100){
+                printf("Array order sudah penuh, silakan selesaikan order yang udah ada dulu\n");
+            }
+            else{
+                Neff(*T)++;
+                CopyKata(arr_makanan[rand_ord], &Food(*T,Neff(*T)));
+                //ngisi Meja(T, Neff(T)) pake nomor meja
+                Meja(*T, Neff(*T)) = ordable;
+            }
         }
-        //tandain kalo meja ini gabisa ngambil order lagi
-        
-        //masukin order ke TabOrd
-        if(Neff(*T) == 100){
-            printf("Array order sudah penuh, silakan selesaikan order yang udah ada dulu");
+        else
+        {
+            printf("Anda tidak bisa mengambil order disini\n");
         }
-        else{
-            Neff(*T)++;
-            CopyKata(arr_makanan[rand_ord], &Food(*T,Neff(*T))); //ngambil nama orderan dari array_nama_orderan, terus salin ke Elemen terbelakang T
-            //ngisi Meja(T, Neff(T)) pake nomor meja
-        }
-        
     }
     else{
-        printf("Anda tidak bisa mengambil order disini");
+        printf("Anda tidak bisa mengambil order disini\n");
     }
 }

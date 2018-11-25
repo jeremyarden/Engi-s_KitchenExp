@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "boolean.h"
 #include "mesinkata.h"
+#include "mapResto.h"
 #include "matriks.h"
 #include <math.h>
 #include <time.h>
@@ -28,6 +29,8 @@ typedef struct {
 #define Food(T,i) (T).TO[(i)].food
 #define Meja(T,i) (T).TO[(i)].meja
 
+boolean SearchMeja(TabOrd T, int Meja);
+/*Mengembalikan True jika meja sudah diisi*/
 IdxType SearchOrd (TabOrd T, Kata X);
 /* Search apakah ada elemen tabel T yang bernilai X */
 /* Jika ada, menghasilkan indeks i terkecil, dengan elemen ke-i = X */
