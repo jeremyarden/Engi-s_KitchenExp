@@ -60,13 +60,13 @@ void InitMap(MATRIKS *room1, MATRIKS *room2, MATRIKS *room3, MATRIKS *kitchen)
 {
     FILE *fp;
     
-    fp = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/CobaResep/CobaResep/room1.txt", "r");
+    fp = fopen("room1.txt", "r");
     FileToMap(fp, room1);
-    fp = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/CobaResep/CobaResep/room2.txt", "r");
+    fp = fopen("room2.txt", "r");
     FileToMap(fp, room2);
-    fp = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/CobaResep/CobaResep/room3.txt", "r");
+    fp = fopen("room3.txt", "r");
     FileToMap(fp, room3);
-    fp = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/CobaResep/CobaResep/kitchen.txt", "r");
+    fp = fopen("kitchen.txt", "r");
     FileToMap(fp, kitchen);
 }
 
@@ -160,16 +160,15 @@ void moveplayer(player *P, MATRIKS room, char cmd, Graph G, adrNode *currLoc)
             }
         }
     }
-    
+
     ChangeRoom(G, currLoc, P);
 }
 
 void NearestCust(player p, MATRIKS room, int *ordable){
     
-    *ordable = Elmt(room, X(p), Y(p)) - '`';
-    
-    if((*ordable > 9) || (*ordable < 0)){
-        *ordable = -999;
+    *ordable = -999;
+    if(Elmt(room, X(p), Y(p)) >= 'a' && Elmt(room, X(p), Y(p)) <= 'j'){
+        *ordable = Elmt(room, X(p), Y(p)) - '`';
     }
 }
 
