@@ -20,7 +20,7 @@ void setTabMenu(TabMenu *T, BinTree MenuTree)
 }
 void makeResep(BinTree *Resep)
 {
-	START("resep.txt");
+	START("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/4.19AM/Engi-s_KitchenExp-master/resep.txt");
 	//printf("%c",CC);
     makeResepTree(Resep);
 }

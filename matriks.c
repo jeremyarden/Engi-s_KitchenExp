@@ -122,7 +122,7 @@ void TulisMATRIKS (MATRIKS M)
         printf("|");
         for (j = 1; j <= NKolEff(M); j++)
         {
-            if (Elmt(M, i, j) == 'X' || Elmt(M, i, j) == 'Y' || Elmt(M, i, j) == 'Z' || (Elmt(M, i, j) >= '0' && Elmt(M, i, j) <= '9') || Elmt(M, i, j) == 'U'){
+            if (Elmt(M, i, j) == 'X' || Elmt(M, i, j) == 'Y' || Elmt(M, i, j) == 'Z' || (Elmt(M, i, j) >= '0' && Elmt(M, i, j) <= '9') || Elmt(M, i, j) == 'U' || Elmt(M, i, j) == 'W'){
                 printf(" %c |", Elmt(M, i, j));
             }
             else{

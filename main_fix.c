@@ -8,6 +8,7 @@
 #include "mapResto.h"
 #include "arraymeja.h"
 #include "order.h"
+#include "give.h"
 #include "nexttik.h"
 
 /*Variabel Global*/
@@ -65,9 +66,9 @@ void InitGame()
     X.kesabaran=30; //kesabaran 30
     QueueCreateEmpty(&Q, 10);
     Add(&Q,X);
-    /*makeResep(&Resep);
+    makeResep(&Resep);
     setTabMenu(&TMenu, Resep);
-    MakeMeja(&TMeja);*/
+    MakeMeja(&TMeja);
 }
 
 void ReloadMap(MATRIKS *rtemp)
@@ -127,6 +128,13 @@ void GAMESTART()
                     Elmt(ruangan, X(p), Y(p)) = 'U';
                     NearestCust(p, rtemp, &ordable);
                     TulisMATRIKS(ruangan);
+                    printf("Order\n");
+                    printOrder(Order);
+                    printQueue(Q);
+                    printf("Hand\n");
+                    printStack(&Hand);
+                    printf("Tray\n");
+                    printStack(&Tray);
                     
                 }
                 else if (CKata.TabKata[2]=='D') {
@@ -138,6 +146,13 @@ void GAMESTART()
                     Elmt(ruangan, X(p), Y(p)) = 'U';
                     NearestCust(p, rtemp, &ordable);
                     TulisMATRIKS(ruangan);
+                    printf("Order\n");
+                    printOrder(Order);
+                    printQueue(Q);
+                    printf("Hand\n");
+                    printStack(&Hand);
+                    printf("Tray\n");
+                    printStack(&Tray);
                 }
                 else if (CKata.TabKata[2]=='L') {
                     char cmd = 'a';
@@ -148,6 +163,13 @@ void GAMESTART()
                     Elmt(ruangan, X(p), Y(p)) = 'U';
                     NearestCust(p, rtemp, &ordable);
                     TulisMATRIKS(ruangan);
+                    printf("Order\n");
+                    printOrder(Order);
+                    printQueue(Q);
+                    printf("Hand\n");
+                    printStack(&Hand);
+                    printf("Tray\n");
+                    printStack(&Tray);
                 }
                 else if (CKata.TabKata[2]=='R') {
                     char cmd = 'd';
@@ -158,6 +180,13 @@ void GAMESTART()
                     Elmt(ruangan, X(p), Y(p)) = 'U';
                     NearestCust(p, rtemp, &ordable);
                     TulisMATRIKS(ruangan);
+                    printf("Order\n");
+                    printOrder(Order);
+                    printQueue(Q);
+                    printf("Hand\n");
+                    printStack(&Hand);
+                    printf("Tray\n");
+                    printStack(&Tray);
                 }
                 else {
                     printf("Masukan salah\n");
@@ -166,51 +195,110 @@ void GAMESTART()
             else if (CKata.TabKata[1]=='C') {
                 if (CKata.TabKata[2]=='H') {
                     Ch(&Hand,&Trash);
+                    printf("Order\n");
+                    printOrder(Order);
+                    printQueue(Q);
+                    printf("Hand\n");
+                    printStack(&Hand);
+                    printf("Tray\n");
+                    printStack(&Tray);
                 }
                 else if (CKata.TabKata[2]=='T') {
                     Ct(&Tray,&Trash);
+                    printf("Order\n");
+                    printOrder(Order);
+                    printQueue(Q);
+                    printf("Hand\n");
+                    printStack(&Hand);
+                    printf("Tray\n");
+                    printStack(&Tray);
                 }
                 else {
                     printf("Masukan salah\n");
-                    InputUser();
                 }
             }   
             else {
                 printf("Masukan salah\n");
-                InputUser();
             }
         }
         else if (CKata.Length==3) {
             if (CKata.TabKata[1]=='P' && CKata.TabKata[2]=='U' && CKata.TabKata[3]=='T') {
                 Put(&Hand,&Tray,&Resep,p,Dapur,TMenu);
+                printf("Order\n");
+                printOrder(Order);
+                printQueue(Q);
+                printf("Hand\n");
+                printStack(&Hand);
+                printf("Tray\n");
+                printStack(&Tray);
             }
             else {
                 printf("Masukan salah\n");
-                InputUser();
             }
         }
         else if (CKata.Length==4) {
             if (CKata.TabKata[1]=='T' && CKata.TabKata[2]=='A' && CKata.TabKata[3]=='K' && CKata.TabKata[4]=='E') {
                 Take(&Hand,Elmt(ruangan,X(p),Y(p)),TMenu);
+                printf("Order\n");
+                printOrder(Order);
+                printQueue(Q);
+                printf("Hand\n");
+                printStack(&Hand);
+                printf("Tray\n");
+                printStack(&Tray);
             }
             else if (CKata.TabKata[1]=='G' && CKata.TabKata[2]=='I' && CKata.TabKata[3]=='V' && CKata.TabKata[4]=='E') {
                 Give(&Tray,&Order,&Pemain,p,&TMeja,&Ruang1,&Ruang2,&Ruang3);
+                printf("Order\n");
+                printOrder(Order);
+                printQueue(Q);
+                printf("Hand\n");
+                printStack(&Hand);
+                printf("Tray\n");
+                printStack(&Tray);
             }
             else {
                 printf("Masukan salah\n");
-                InputUser();
+                
             }
         }
         else if (CKata.Length==5) {
             if (CKata.TabKata[1]=='P' && CKata.TabKata[2]=='L' && CKata.TabKata[3]=='A' && CKata.TabKata[4]=='C' && CKata.TabKata[5]=='E') {
-                Place(&Q,&TMeja,&ruangan);
+                if(Room(p) == 1)
+                {
+                    Place(p,&Q,&TMeja,&Ruang1);
+                } else if (Room(p) == 2)
+                {
+                    Place(p,&Q,&TMeja,&Ruang2);
+                } else if (Room(p) == 3)
+                {
+                    Place(p,&Q,&TMeja,&Ruang3);
+                } else
+                {
+                    Place(p,&Q,&TMeja,&ruangan);
+                }
+                ReloadMap(&rtemp);
+                Elmt(ruangan, X(p), Y(p)) = 'U';
+                printf("Order\n");
+                printOrder(Order);
+                printQueue(Q);
+                printf("Hand\n");
+                printStack(&Hand);
+                printf("Tray\n");
+                printStack(&Tray);
             }
             else if (CKata.TabKata[1]=='O' && CKata.TabKata[2]=='R' && CKata.TabKata[3]=='D' && CKata.TabKata[4]=='E' && CKata.TabKata[5]=='R') {
-                order(p,&Order,ruangan,TMenu); 
+                order(p,&Order,rtemp,TMenu);
+                printf("Order\n");
+                printOrder(Order);
+                printQueue(Q);
+                printf("Hand\n");
+                printStack(&Hand);
+                printf("Tray\n");
+                printStack(&Tray);
             }
             else {
                 printf("Masukan salah\n");
-                InputUser();
             }
         }
         else if (CKata.Length==6) {
@@ -220,17 +308,10 @@ void GAMESTART()
         }
         else {
             printf("Masukan salah\n");
-            InputUser();
+            
         }
         InputUser();
         
-        printf("Order\n");
-        printOrder(Order);
-        printQueue(Q);
-        printf("Hand\n");
-        printStack(&Hand);
-        printf("Tray\n");
-        printStack(&Tray);
         
     }
 }

@@ -25,42 +25,43 @@ void Place(player p,Queue *Q,TabMeja *T,MATRIKS *M){
     time_t t;
     int mja;
     boolean sudah;
-    int i;
+    int i,until;
     srand((unsigned) time(&t));
+    printf("%c",Elmt(*M, X(p), Y(p)));
     if ((Elmt(*M, X(p), Y(p))>='a')&&Elmt(*M, X(p), Y(p))<='j'){
-		mja=Elmt(*M, X(p), Y(p))-'a'+1;
-	    i=Head(*Q);
-	    if (!Elmtterisi(*T,mja)){
-	    	if(Elmtisi(*T,mja)==4){
-	    		isimeja(*T,*M,mja,infoOrang(*Q,i),(rand()%25+25));
-				Deli(*Q,i,&Sampah)
-			}else if(Elmtisi(*T,mja)==2&&infoOrang(*Q,i)==2){
-	    		isimeja(*T,*M,mja,infoOrang(*Q,i),(rand()%25+25));
-				Deli(*Q,i,&Sampah)
-			}else{
-				if (i>Tail(*Q)){
-					until=Tail(*Q)+MaxEl(*Q);
-				}else{
-					until=Tail(*Q);
-				}
-				sudah=false;
-				while (until>=i&&!sudah){
-					if (infoOrang(*Q,(i-1)%MaxEl(*Q)+1)==2){
-						isimeja(*T,*M,mja,2,(rand()%25+25));
-						sudah=true;
-						Deli(*Q,(i-1)%MaxEl(*Q)+1,&Sampah)
-					}else{
-						i++;
-					}
-				}	
-				if (!sudah){
-					printf("Tidak ada tempat kosong, mohon bersabar\n");
-				}
-			}
-		}else{
-			printf("Meja Penuh\n");
-		}
-	}else{
-		printf("Tidak ada meja\n");
-	}
+        mja=Elmt(*M, X(p), Y(p))-'a'+1;
+        i=Head(*Q);
+        if (!Elmtterisi(*T,mja)){
+            if(Elmtisi(*T,mja)==4){
+                isimeja(T,M,mja,InfoOrang(*Q,i),(rand()%25+25));
+                Deli(Q,i,&Sampah);
+            }else if(Elmtisi(*T,mja)==2&&InfoOrang(*Q,i)==2){
+                isimeja(T,M,mja,InfoOrang(*Q,i),(rand()%25+25));
+                Deli(Q,i,&Sampah);
+            }else{
+                if (i>Tail(*Q)){
+                    until=Tail(*Q)+MaxEl(*Q);
+                }else{
+                    until=Tail(*Q);
+                }
+                sudah=false;
+                while (until>=i&&!sudah){
+                    if (InfoOrang(*Q,(i-1)%MaxEl(*Q)+1)==2){
+                        isimeja(T,M,mja,2,(rand()%25+25));
+                        sudah=true;
+                        Deli(Q,(i-1)%MaxEl(*Q)+1,&Sampah);
+                    }else{
+                        i++;
+                    }
+                }
+                if (!sudah){
+                    printf("Tidak ada tempat kosong, mohon bersabar\n");
+                }
+            }
+        }else{
+            printf("Meja Penuh\n");
+        }
+    }else{
+        printf("Tidak ada meja\n");
+    }
 }
