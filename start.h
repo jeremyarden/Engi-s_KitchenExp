@@ -44,6 +44,14 @@ void MakeEmptyTabName (TabName *T);
 /*I.S T sembarang
  F.S  Terbentuk tabel nama yang belum diisi dengan kapasitas 20*/
 
+void FillTabName(TabName *T);
+/*
+ Mengisi TabName dengan username yang sudah pernah diisi
+ */
+
+void SaveTabName(TabName T);
+/*Menuliskan username yang ada di dalam TabName*/
+
 int NbElmtArr (TabName T);
 /*Memberikan banyaknya nama dalam tabel nama*/
 

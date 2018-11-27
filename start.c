@@ -14,6 +14,44 @@ void MakeEmptyTabName (TabName *T)
 {
     Neff(*T) = 0;
 }
+
+void FillTabName(TabName *T)
+/*
+ Mengisi TabName dengan username yang sudah pernah diisi
+ */
+{
+    int i,count;
+    
+    i = 1;count = 0;
+    STARTKATA("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/4.19AM/Engi-s_KitchenExp-master/name.txt");
+    while(!EndKata)
+    {
+        ElmtTN(*T, i) = CKata;
+        i++;count++;
+        ADVKATA();
+    }
+    Neff(*T) = count;
+}
+
+void SaveTabName(TabName T)
+/*Menuliskan username yang ada di dalam TabName*/
+{
+    FILE *wr;
+    
+    wr = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/4.19AM/Engi-s_KitchenExp-master/name.txt", "w");
+    for(int i = 1;i<=Neff(T);i++)
+    {
+        for(int j = 1;j<=ElmtTN(T, i).Length;j++)
+        {
+            fprintf(wr, "%c",ElmtTN(T, i).TabKata[j]);
+        }
+        if(i < Neff(T))
+        {
+            fprintf(wr, ",");
+        }
+    }
+    fprintf(wr, ".");
+}
 int NbElmtArr (TabName T)
 /*Memberikan banyaknya nama dalam tabel nama*/
 {
