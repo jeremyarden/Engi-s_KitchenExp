@@ -60,13 +60,13 @@ void InitMap(MATRIKS *room1, MATRIKS *room2, MATRIKS *room3, MATRIKS *kitchen)
 {
     FILE *fp;
     
-    fp = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/4.19AM/Engi-s_KitchenExp-master/room1.txt", "r");
+    fp = fopen("room1.txt", "r");
     FileToMap(fp, room1);
-    fp = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/4.19AM/Engi-s_KitchenExp-master/room2.txt", "r");
+    fp = fopen("room2.txt", "r");
     FileToMap(fp, room2);
-    fp = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/4.19AM/Engi-s_KitchenExp-master/room3.txt", "r");
+    fp = fopen("room3.txt", "r");
     FileToMap(fp, room3);
-    fp = fopen("/Users/abiyyuismunandar/Documents/AIstrukDat/Tubes/4.19AM/Engi-s_KitchenExp-master/kitchen.txt", "r");
+    fp = fopen("kitchen.txt", "r");
     FileToMap(fp, kitchen);
 }
 
