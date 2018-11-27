@@ -49,6 +49,7 @@ int main()
     ReloadMap(&rtemp);
     Elmt(ruangan, X(p), Y(p)) = 'U';
     GAMESTART();
+    SaveTabName(TNama);
     return 0;
 }
 
@@ -59,6 +60,7 @@ void InitGame()
     InitMap(&Ruang1, &Ruang2, &Ruang3, &Dapur);
     SetStart(&Pemain);
     MakeEmptyTabName(&TNama);
+    FillTabName(&TNama);
     StackCreateEmpty(&Hand);
     StackCreateEmpty(&Tray);
     i=rand()%2;
